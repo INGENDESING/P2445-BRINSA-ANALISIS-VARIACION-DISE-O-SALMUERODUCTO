@@ -1,0 +1,147 @@
+% ===================== BASES DE DISENO =====================
+\section{Bases de Diseño}
+\label{sec:bases}
+
+Este capítulo reúne la totalidad de las variables suministradas por el cliente, los datos de los fluidos de proceso, las condiciones ambientales del sitio de instalación, las dimensiones de la tubería bajo análisis y el marco normativo aplicable para el diseño y simulación del sistema.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Restricciones de Operación}
+\label{ssec:restricciones}
+
+Las condiciones de operación nominales han sido establecidas por el departamento de ingeniería de BRINSA S.A. Las restricciones de diseño hidráulico y límites operativos recomendados por la literatura técnica para tuberías plásticas se presentan en la Tabla~\ref{tab:restricciones}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Restricciones y condiciones operativas del sistema de conducción.}
+    \label{tab:restricciones}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXccl@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor Establecido} & \textbf{Valor Recomendado} & \textbf{Referencia} \\
+        \midrule
+        & Flujo másico nominal (ambas líneas) & \SI{300000}{\kilogram\per\hour} & --- & Información Cliente \\
+        & Velocidad de flujo en HDPE & \SI{1.14}{\meter\per\second} (salmuera) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
+        & Velocidad de flujo en HDPE & \SI{1.37}{\meter\per\second} (condensado) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
+        & Presión máxima de operación (PE100 SDR 17) & --- & \SI{10.0}{bar} & ISO 4427 / ASTM F714 \\
+        & Temperatura de operación de la salmuera & \SI{15}{\celsius} & --- & Información Cliente \\
+        & Temperatura de operación del condensado & \SI{20}{\celsius} & --- & Información Cliente \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Condiciones Ambientales del Sitio}
+\label{ssec:amb}
+
+El proyecto se localiza en la Sabana de Bogotá, en cercanías del Humedal Arrieros y el parque Jaime Duque, municipio de Tocancipá, Cundinamarca. Las condiciones climáticas y de elevación geográfica empleadas en los análisis se tabulan en la Tabla~\ref{tab:amb_ext}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Condiciones ambientales locales de la Sabana de Bogotá.}
+    \label{tab:amb_ext}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXccc@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Mínimo} & \textbf{Máximo} & \textbf{Unidad} \\
+        \midrule
+        & Temperatura ambiente local & 4.0 & 22.0 & \SI{}{\celsius} \\
+        & Presión atmosférica local & 73.5 & 74.5 & \SI{}{\kilo\pascal} \\
+        & Altitud promedio sobre el nivel del mar & --- & 2560.0 & \SI{}{\meter} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Propiedades Fisicoquímicas del Fluido de Proceso}
+\label{ssec:fluido}
+
+El sistema transporta de forma paralela dos fluidos independientes: salmuera saturada al \SI{26}{\percent} p/p de cloruro de sodio (\text{NaCl}) y condensados industriales de vapor (agua de proceso). Las propiedades físicas e hidrodinámicas de ambos fluidos se resumen en la Tabla~\ref{tab:propfluido}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Propiedades fisicoquímicas de los fluidos a condiciones de proceso.}
+    \label{tab:propfluido}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXcccc@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Propiedad} & \textbf{Salmuera Saturada} & \textbf{Condensado} & \textbf{Unidad} & \textbf{Fuente} \\
+        \midrule
+        & Temperatura de referencia & 15.0 & 20.0 & \SI{}{\celsius} & Base de diseño \\
+        & Densidad del fluido ($\rho$) & 1200.0 & 1000.0 & \SI{}{\kilogram\per\cubic\meter} & NIST / DIPPR \\
+        & Viscosidad dinámica ($\mu$) & 1.60 & 1.00 & \SI{}{\milli\pascal\second} & Perry's Handbook \\
+        & Concentración de sólidos disueltos & 26.0 & < 0.1 & \SI{}{\percent} p/p & Especificación \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Especificación de Tuberías y Accesorios}
+\label{ssec:tuberia}
+
+El diseño propuesto por el equipo de Mantenimiento de BRINSA S.A. contempla el uso de tubería de Polietileno de Alta Densidad (HDPE) clase PE100 y relación de dimensiones estándar SDR 17. Las dimensiones geométricas para la simulación hidráulica se presentan en la Tabla~\ref{tab:tuberia}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Dimensiones geométricas de la tubería bajo análisis.}
+    \label{tab:tuberia}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXcccc@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Línea / Servicio} & \textbf{D. Nominal} & \textbf{D. Exterior} & \textbf{D. Interior} & \textbf{Espesor Pared} \\
+        & & \textbf{[in]} & \textbf{[mm]} & \textbf{[mm]} & \textbf{[mm]} \\
+        \midrule
+        & Salmueroducto por PHD & 12 & 315.0 & 278.0 & 18.5 \\
+        & Línea de Condensados por PHD & 12 & 315.0 & 278.0 & 18.5 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+La rugosidad absoluta interna de las tuberías de HDPE PE100 se establece en $\epsilon = \SI{1.5e-6}{\meter}$ (\SI{0.0015}{\mm}) de acuerdo con el *Crane Technical Paper No. 410*, lo cual representa una superficie interior prácticamente lisa para los cálculos hidráulicos.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Perfil Altimétrico y Cotas Clave Globales}
+\label{ssec:perfil_global}
+
+El salmueroducto y la línea de condensados operan en un trazado topográfico de conducción por gravedad y bombeo con una longitud horizontal total de \SI{25.35}{\kilo\meter}. Para el cálculo de presiones hidrostáticas estáticas reales bajo condición de parada, es mandatorio considerar el perfil altimétrico completo del sistema referenciado a los puntos extremos y el cruce enterrado. Los datos de elevación clave extraídos del archivo general \texttt{PERFILPROYECTO.dxf} se consolidan en la Tabla~\ref{tab:cotas_globales}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Elevaciones y cotas clave del trazado del salmueroducto global.}
+    \label{tab:cotas_globales}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXccl@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Punto de Referencia / Localización} & \textbf{Abscisa} & \textbf{Cota Clave} & \textbf{Fuente / Observación} \\
+        & & \textbf{[km]} & \textbf{[m.s.n.m.]} & \\
+        \midrule
+        & Origen en Mina de Sesquilé & K0+000.00 & 2703.37 & Capa \texttt{COTA-CLAVE-SAL} (DXF) \\
+        & Lanzamiento PHD Humedal Arrieros (Cresta de entrada) & K16+500.00 & 2558.35 & Plano \texttt{202609-BRI-SE-CIV-PL-001-RB} \\
+        & Fondo del Sifón Invertido (Cruce Humedal y Vía Férrea) & K16+580.00 & 2542.75 & Cota mínima proyectada de PHD \\
+        & Llegada a Planta Brinsa (Tocancipá) & K25+350.00 & 2522.90 & Capa de texto (DXF) \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Normativas y Estándares Aplicables}
+\label{ssec:normas}
+
+El análisis de diseño y las memorias de cálculo correspondientes se rigen bajo los códigos y normativas internacionales listados en la Tabla~\ref{tab:normas}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Marco normativo técnico para la evaluación de diseño.}
+    \label{tab:normas}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NX>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xl@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Norma / Estándar} & \textbf{Alcance} & \textbf{Edición} \\
+        \midrule
+        & ASME B31.3 & Diseño, materiales y límites físicos de sistemas de tuberías de proceso. & 2022 \\
+        & ASME B31.4 & Sistemas de transporte de hidrocarburos líquidos y otras pulpas. & 2022 \\
+        & Crane TP-410 & Metodología de cálculo hidráulico y coeficientes de fricción en tuberías. & 2018 \\
+        & ASTM F714 / ISO 4427 & Requisitos dimensionales e hidráulicos para tuberías de polietileno (HDPE). & 2021 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+

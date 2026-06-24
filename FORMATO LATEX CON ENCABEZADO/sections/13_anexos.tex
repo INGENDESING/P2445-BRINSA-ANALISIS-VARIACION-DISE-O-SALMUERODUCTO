@@ -1,0 +1,85 @@
+% ===================== ANEXOS =====================
+\appendix
+\section{Código de Simulación Hidráulica en Python}
+\label{appendix:code}
+
+Este anexo contiene el código fuente desarrollado en Python 3.10 para realizar la simulación hidráulica dinámica comparativa y el cálculo hidrostático estático en el fondo de la perforación dirigida. El código implementa las ecuaciones de Darcy-Weisbach y la aproximación de Haaland para resolver de forma explícita las pérdidas dinámicas.
+
+\begin{verbatim}
+import math
+
+# Constantes físicas
+g = 9.80665  # m/s^2
+
+# Propiedades de los fluidos
+fluidos = {
+    "Salmuera Saturada (26% NaCl)": {
+        "densidad": 1200.0,    # kg/m^3
+        "viscosidad": 0.0016,  # Pa*s
+        "flujo_masico": 300000.0  # kg/h
+    },
+    "Condensado (Agua Industrial)": {
+        "densidad": 1000.0,    # kg/m^3
+        "viscosidad": 0.0010,  # Pa*s
+        "flujo_masico": 300000.0  # kg/h
+    }
+}
+
+# Parámetros geométricos (HDPE SDR 17 - 12" NPS)
+diametro_hdpe_12in = {
+    "OD": 0.315,  # m
+    "ID": 0.278   # m
+}
+rugosidad_hdpe = 1.5e-6  # m
+
+# Longitudes del tramo
+L_superficial = 450.0
+L1 = math.sqrt(70.0**2 + (2558.35 - 2542.75)**2)
+L2 = 180.0
+L3 = math.sqrt(200.0**2 + (2557.56 - 2542.75)**2)
+L_phd = L1 + L2 + L3
+
+K_superficial = 0.2
+K_phd = 0.5
+
+def calcular_factor_friccion_darcy(Re, roughness_ratio):
+    if Re < 2300:
+        return 64.0 / Re
+    else:
+        termino = (roughness_ratio / 3.7) ** 1.11 + 6.9 / Re
+        inv_sqrt_f = -1.8 * math.log10(termino)
+        return 1.0 / (inv_sqrt_f ** 2)
+
+def calcular_perdidas_tramo(Q_m3h, ID, L, K, rho, mu):
+    Q = Q_m3h / 3600.0  # m^3/s
+    A = (math.pi / 4.0) * (ID ** 2)
+    v = Q / A
+    Re = (rho * v * ID) / mu
+    roughness_ratio = rugosidad_hdpe / ID
+    f = calcular_factor_friccion_darcy(Re, roughness_ratio)
+    h_f = f * (L / ID) * (v ** 2) / (2.0 * g)
+    h_m = K * (v ** 2) / (2.0 * g)
+    h_total = h_f + h_m
+    dP_total = rho * g * h_total
+    return v, Re, h_total, dP_total / 1000.0
+\end{verbatim}
+
+\section{Planos y Documentación Técnica de Referencia}
+\label{appendix:drawings}
+
+La Tabla~\ref{tab:documentos_referencia} relaciona los planos de diseño civil e hidráulico y la correspondencia técnica oficial consultada como base para el presente estudio técnico.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Documentación de referencia empleada en el estudio.}
+    \label{tab:documentos_referencia}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NllX@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Documento} & \textbf{Código / Código Rev.} & \textbf{Descripción} \\
+        \midrule
+        & Plano de Perfil PHD & `202609-BRI-SE-CIV-PL-001-RB` & Plano civil e hidráulico de planta y perfil longitudinal de la Perforación Horizontal Dirigida. \\
+        & Correo de Solicitud BRINSA S.A. & Fwd: Validación DML (23/06/2026) & Correo electrónico oficial que especifica los escenarios operativos, caudales e interrogantes técnicos. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}

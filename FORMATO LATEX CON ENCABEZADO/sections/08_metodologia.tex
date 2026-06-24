@@ -1,0 +1,103 @@
+% ===================== METODOLOGIA =====================
+\section{Metodología}
+\label{sec:metodologia}
+
+Este capítulo detalla la secuencia de actividades del estudio, las herramientas y ecuaciones matemáticas implementadas en la simulación hidráulica, y la matriz de escenarios operacionales evaluados para comparar las dos configuraciones físicas del trazado.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Plan de Trabajo}
+\label{ssec:plan}
+
+El análisis se ejecutó en cuatro etapas secuenciales dirigidas a establecer la viabilidad hidráulica y mecánica de la profundización de las líneas. Las actividades correspondientes se presentan en la Tabla~\ref{tab:plan_trabajo}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Etapas y actividades desarrolladas en el plan de trabajo.}
+    \label{tab:plan_trabajo}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NlX@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Etapa}} & \textbf{Actividad} & \textbf{Descripción} \\
+        \midrule
+        & Recopilación y digitalización & Conversión y análisis de datos topográficos, planos civiles de PHD y especificaciones de fluidos. \\
+        & Simulación hidráulica numérica & Implementación de modelo matemático en Python para el cálculo de pérdidas de presión dinámicas en tuberías de 12" NPS. \\
+        & Evaluación de riesgos operativos & Análisis de presión hidrostática en el fondo del cruce, velocidad crítica de arrastre y balance de succión. \\
+        & Consolidación de informe & Elaboración de la memoria técnica de cálculo final en LaTeX bajo formato Elsevier. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Herramientas y Modelamiento Matemático}
+\label{ssec:herramientas}
+
+El cálculo hidráulico en estado estacionario para flujo incompresible se fundamenta en la ecuación de conservación de la energía de Bernoulli, expresada en la Ecuación~\ref{eq:bernoulli}:
+
+\begin{equation}
+    z_1 + \frac{P_1}{\rho g} + \frac{v_1^2}{2g} = z_2 + \frac{P_2}{\rho g} + \frac{v_2^2}{2g} + h_L
+    \label{eq:bernoulli}
+\end{equation}
+
+\noindent donde $z_1$ y $z_2$ corresponden a las cotas de elevación en la entrada y salida del tramo bajo análisis (\SI{}{\meter}), $P_1$ y $P_2$ representan las presiones estáticas manométricas (\SI{}{\pascal}), $v_1$ y $v_2$ son las velocidades de flujo (\SI{}{\meter\per\second}), $\rho$ es la densidad del fluido (\SI{}{\kilogram\per\cubic\meter}), $g$ es la aceleración de la gravedad (\SI{9.80665}{\meter\per\second\squared}), y $h_L$ es la pérdida total de energía hidráulica expresada como cabeza de fluido (\SI{}{\meter}).
+
+Debido a que el diámetro interno de la tubería se mantiene constante ($ID_1 = ID_2$) y el fluido es incompresible, las velocidades cinéticas se cancelan ($v_1 = v_2$). La pérdida de energía total $h_L$ se compone de pérdidas primarias por fricción ($h_f$) y pérdidas menores por accesorios ($h_m$), de acuerdo con la Ecuación~\ref{eq:hl}:
+
+\begin{equation}
+    h_L = h_f + h_m
+    \label{eq:hl}
+\end{equation}
+
+Las pérdidas por fricción en flujo turbulento se determinan mediante la ecuación clásica de Darcy-Weisbach presentada en la Ecuación~\ref{eq:darcy}:
+
+\begin{equation}
+    h_f = f \frac{L}{ID} \frac{v^2}{2g}
+    \label{eq:darcy}
+\end{equation}
+
+\noindent donde $f$ es el factor de fricción de Darcy (adimensional), $L$ es la longitud física del tramo de tubería (\SI{}{\meter}) e $ID$ es el diámetro interno de la tubería (\SI{}{\meter}).
+
+El factor de fricción de Darcy ($f$) se calcula mediante la ecuación explícita de Haaland, la cual constituye una excelente aproximación a la ecuación implícita de Colebrook-White, como se muestra en la Ecuación~\ref{eq:haaland}:
+
+\begin{equation}
+    \frac{1}{\sqrt{f}} = -1.8 \log_{10} \left[ \left( \frac{\epsilon / ID}{3.7} \right)^{1.11} + \frac{6.9}{Re} \right]
+    \label{eq:haaland}
+\end{equation}
+
+\noindent donde $\epsilon$ es la rugosidad absoluta del material de la tubería (\SI{}{\meter}) y $Re$ es el número de Reynolds adimensional. El número de Reynolds se define en la Ecuación~\ref{eq:reynolds}:
+
+\begin{equation}
+    Re = \frac{\rho v ID}{\mu}
+    \label{eq:reynolds}
+\end{equation}
+
+\noindent donde $\mu$ es la viscosidad dinámica del fluido (\SI{}{\pascal\second}). Las pérdidas menores secundarias causadas por la curvatura del trazado se determinan mediante la Ecuación~\ref{eq:menores}:
+
+\begin{equation}
+    h_m = K \frac{v^2}{2g}
+    \label{eq:menores}
+\end{equation}
+
+\noindent donde $K$ es el coeficiente de pérdida menor equivalente del accesorio o curvatura. El cálculo numérico se estructuró y programó en lenguaje Python 3.10 utilizando librerías matemáticas estándar.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Matriz de Escenarios y Casos de Estudio}
+\label{ssec:matriz}
+
+Para evaluar rigurosamente el diseño, se estructuró una matriz de casos cruzando las configuraciones físicas de trazado con los fluidos de proceso a las condiciones especificadas, presentada en la Tabla~\ref{tab:escenarios}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Matriz de escenarios operativos y casos de simulación.}
+    \label{tab:escenarios}
+    \begin{tabularx}{\textwidth}{@{}cccccc@{}}
+        \toprule
+        \textbf{Caso} & \textbf{Configuración} & \textbf{Fluido} & \textbf{Longitud} & \textbf{Flujo Másico} & \textbf{Cota Clave Mín.} \\
+        & & & \textbf{[\SI{}{\meter}]} & \textbf{[\SI{}{\kilogram\per\hour}]} & \textbf{[m.s.n.m.]} \\
+        \midrule
+        1-A & Superficial (Existente) & Salmuera Saturada & 450.00 & 300,000 & 2557.56 \\
+        1-B & Superficial (Existente) & Condensado & 450.00 & 300,000 & 2557.56 \\
+        2-A & Enterrada (PHD) & Salmuera Saturada & 452.26 & 300,000 & 2542.75 \\
+        2-B & Enterrada (PHD) & Condensado & 452.26 & 300,000 & 2542.75 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}

@@ -1,0 +1,61 @@
+% ===================== RESULTADOS =====================
+\section{Resultados}
+\label{sec:resultados}
+
+Este capítulo presenta de forma cuantitativa y consolidada los resultados obtenidos mediante el modelamiento hidráulico numérico para las dos condiciones físicas de trazado evaluadas (superficial y enterrada mediante PHD) para los circuitos de salmuera y condensado.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Resultados del Modelamiento Hidráulico Dinámico}
+\label{ssec:res_hidraulico}
+
+La simulación se realizó considerando un flujo másico de \SI{300000}{\kilogram\per\hour} para cada línea en tuberías de \SI{12}{in} NPS (SDR 17, ID = \SI{278.0}{\mm}). Los resultados de velocidad, número de Reynolds, pérdida de carga (cabeza hidráulica) y pérdida de presión dinámica se consolidan en la Tabla~\ref{tab:resumen_resultados}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados consolidados de la simulación hidráulica dinámica.}
+    \label{tab:resumen_resultados}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXcccccl@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Caso / Fluido} & \textbf{Configuración} & \textbf{Q} & \textbf{Velocidad} & \textbf{Re} & \textbf{Cabeza $h_L$} & \textbf{Pérdida $\Delta P$} \\
+        & & & \textbf{[\SI{}{\cubic\meter\per\hour}]} & \textbf{[\SI{}{\meter\per\second}]} & \textbf{[---]} & \textbf{[\SI{}{\meter}]} & \textbf{[\SI{}{\kilo\pascal}]} \\
+        \midrule
+        & Salmuera Saturada & Superficial & 250.00 & 1.14 & \num{2.38e5} & 1.635 & 19.25 \\
+        & Salmuera Saturada & Enterrada (PHD) & 250.00 & 1.14 & \num{2.38e5} & 1.664 & 19.58 \\
+        & Condensado (Agua) & Superficial & 300.00 & 1.37 & \num{3.81e5} & 2.161 & 21.19 \\
+        & Condensado (Agua) & Enterrada (PHD) & 300.00 & 1.37 & \num{3.81e5} & 2.200 & 21.58 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Carga de Presión Estática Global y Local Comparativa}
+\label{ssec:res_estatico}
+
+El trazado de la Perforación Horizontal Dirigida (PHD) desciende hasta una cota clave mínima de \SI{2542.75}{m.s.n.m.} en el tramo horizontal de fondo (Km 16.5). En una condición estática de parada con las válvulas en la Mina de Sesquilé abiertas (comportamiento global), el sistema se encuentra presurizado por la cota de origen a \SI{2703.37}{m.s.n.m.}. Si se implementan válvulas de aislamiento intermedias en los puntos de conexión, la presión estática se limita al nivel local. La Tabla~\ref{tab:resultados_estatico} presenta el análisis comparativo de la presión estática hidrostática entre el tramo superficial original y el enterrado (PHD) para ambos escenarios de operación.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Presiones hidrostáticas estáticas comparativas en el tramo Km 16.5.}
+    \label{tab:resultados_estatico}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXcccc@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Fluido / Servicio} & \textbf{Configuración} & \textbf{Cabeza Estática ($dH$)} & \textbf{Presión Estática} & \textbf{Presión Estática} \\
+        & & & \textbf{[\SI{}{\meter}]} & \textbf{[\SI{}{\kilo\pascal}]} & \textbf{[bar]} \\
+        \midrule
+        \multicolumn{6}{l}{\textit{Escenario A: Sin Válvulas de Aislamiento (Comportamiento Global)}} \\
+        & Salmuera Saturada & Superficial (Original) & 145.02 & \num{1707.12} & 17.07 \\
+        & Salmuera Saturada & Enterrada (PHD) & 160.62 & \num{1890.21} & 18.90 \\
+        & Condensado (Agua) & Superficial (Original) & 145.02 & \num{1422.16} & 14.22 \\
+        & Condensado (Agua) & Enterrada (PHD) & 160.62 & \num{1575.14} & 15.75 \\
+        \midrule
+        \multicolumn{6}{l}{\textit{Escenario B: Con Válvulas de Aislamiento (Comportamiento Local)}} \\
+        & Salmuera Saturada & Superficial (Original) & 0.00 & 0.00 & 0.00 \\
+        & Salmuera Saturada & Enterrada (PHD) & 15.60 & 183.58 & 1.84 \\
+        & Condensado (Agua) & Superficial (Original) & 0.00 & 0.00 & 0.00 \\
+        & Condensado (Agua) & Enterrada (PHD) & 15.60 & 152.98 & 1.53 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+

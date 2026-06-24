@@ -1,0 +1,109 @@
+% ===================== ANALISIS DE RESULTADOS =====================
+\section{Análisis de Resultados}
+\label{sec:analisis}
+
+Este capítulo discute el impacto del diseño de profundización por Perforación Horizontal Dirigida (PHD) sobre la operación del salmueroducto de BRINSA S.A., evaluando los riesgos de succión, sedimentación, acumulación de gases y resistencia mecánica.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Evaluación del Impacto en la Presión de Succión (Km8 y Km17)}
+\label{ssec:analisis_succion}
+
+El principal requerimiento del cliente consiste en determinar si la profundización del trazado en el Humedal Arrieros (Km 16.5) genera pérdidas de carga significativas que comprometan la presión de succión en la estación Km8, cuya puesta en marcha está prevista para finales de este año.
+
+Los resultados numéricos (Tabla~\ref{tab:resumen_resultados}) demuestran que el incremento neto de pérdidas de presión dinámica es de tan solo \SI{0.33}{\kilo\pascal} (\SI{0.003}{bar}) para la línea de salmuera y \SI{0.39}{\kilo\pascal} (\SI{0.004}{bar}) para la línea de condensado. Este incremento porcentual de \SI{1.72}{\percent} y \SI{1.83}{\percent}, respectivamente, se considera despreciable desde la perspectiva del diseño de sistemas de bombeo. 
+
+Físicamente, esto ocurre debido a dos factores:
+1. La longitud física adicional por la geometría inclinada del túnel de perforación es de únicamente \SI{2.26}{\meter} en comparación con el trazado superficial horizontal original de \SI{450.00}{\meter}.
+2. La diferencia de elevación neta entre el punto de lanzamiento y llegada es favorable (el punto de llegada se encuentra \SI{0.79}{\meter} por debajo del punto de lanzamiento). En estado estacionario de flujo continuo, bajo la condición de sifón lleno, las cargas de elevación vertical se cancelan mutuamente de acuerdo con la ecuación de Bernoulli.
+
+Por lo tanto, se concluye cuantitativamente que **no existe una afectación significativa en la presión de succión de las estaciones Km8 y Km17** bajo condiciones de operación nominal estable.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Riesgo de Sedimentación y Obstrucción en el Sifón Invertido}
+\label{ssec:analisis_sedimentacion}
+
+Al profundizar la tubería por debajo del humedal se genera una configuración física de sifón invertido. La salmuera transportada se encuentra en estado de saturación (\SI{26}{\percent} p/p de \text{NaCl}), lo que implica un riesgo inherente de precipitación de cristales de sal ante disminuciones de temperatura o detenciones del flujo. Asimismo, el arrastre de sólidos menores (arenas o impurezas) es común en este tipo de redes de conducción.
+
+Para evitar la acumulación de sólidos y la consecuente reducción del área de flujo en el fondo plano de la perforación (cota \SI{2542.75}{m.s.n.m.}), la velocidad del fluido debe superar la velocidad crítica de autolimpieza ($v_c$). De acuerdo con criterios de la *Hydraulic Institute (HI)* y heurísticas de transporte de pulpas y salmueras, la velocidad mínima de arrastre de sólidos finos se sitúa en el rango de \SI{0.9}{\meter\per\second} a \SI{1.2}{\meter\per\second}.
+
+Dado que la velocidad de flujo calculada para la salmuera es de \SI{1.14}{\meter\per\second} a condiciones nominales, el sistema opera en un margen seguro de autolimpieza. Sin embargo, si el caudal volumétrico desciende por debajo de \SI{198}{\cubic\meter\per\hour} (equivalente a \SI{55}{\liter\per\second} o una velocidad de \SI{0.90}{\meter\per\second}), se activa un riesgo alto de sedimentación en el fondo de la PHD.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Riesgo de Acumulación de Gases en Puntos Altos}
+\label{ssec:analisis_gases}
+
+La geometría de sifón invertido de la PHD crea dos crestas o puntos altos locales de transición en el plano de perfil: el punto de lanzamiento a la abscisa K0+000 (cota \SI{2558.35}{m.s.n.m.}) y el punto de llegada a la abscisa K0+450 (cota \SI{2557.56}{m.s.n.m.}). 
+
+Durante el llenado de la línea, el aire atrapado migrará naturalmente hacia estos picos altos. De igual manera, la liberación de gases disueltos en el condensado o la salmuera debido a fluctuaciones de presión y temperatura se acumulará en estas secciones. La formación de bolsas de aire en las crestas genera:
+1. Bloqueo por aire (*air binding*), el cual incrementa significativamente la resistencia hidráulica aparente, reduciendo el caudal de operación.
+2. Transitorios de presión severos (golpes de ariete) durante arranques y paradas debido a la compresión súbita de las bolsas de gas.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\subsection{Evaluación Mecánica e Integridad Estructural de la Tubería HDPE}
+\label{ssec:analisis_mecanico}
+
+La integridad mecánica del tramo enterrado por Perforación Horizontal Dirigida (PHD) a la cota clave de fondo de \SI{2542.75}{m.s.n.m.} depende de la presión interna total a la que se expone el material. Si el sistema opera sin válvulas de aislamiento intermedias (comportamiento global), el fondo del sifón en el Km 16.5 se encuentra presurizado por la columna hidrostática acumulada desde la Mina de Sesquilé (\SI{2703.37}{m.s.n.m.}), resultando en una cabeza estática de \SI{160.62}{\meter}. 
+
+La presión de diseño total en el punto más bajo ($P_{\text{diseño}}$) se calcula de acuerdo con la Ecuación~\ref{eq:pfondo}, sumando la presión dinámica local de entrada en superficie ($P_{\text{din, sup}}$) y el efecto hidrostático global:
+
+\begin{equation}
+    P_{\text{diseño}} = P_{\text{din, sup}} + \rho g \cdot dH_{\text{global}}
+    \label{eq:pfondo}
+\end{equation}
+
+Para el circuito de salmuera saturada ($\rho = \SI{1200}{\kilogram\per\cubic\meter}$), la columna hidrostática global genera una presión estática en parada de \SI{18.90}{bar}. Para el circuito de condensados ($\rho = \SI{1000}{\kilogram\per\cubic\meter}$), esta presión es de \SI{15.75}{bar}. En la Figura~\ref{fig:perfil_presiones_estaticas} se presenta la distribución de presiones estáticas a lo largo del tramo local para los escenarios de operación global y local aislado, contrastándolos con los límites nominales de la tubería.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.90\textwidth]{assets/perfil_presiones.png}
+    \caption{Perfil de presiones estáticas hidrostáticas comparativas en el tramo Km 16.5 (Humedal Arrieros) para el escenario global y local aislado en salmuera saturada.}
+    \label{fig:perfil_presiones_estaticas}
+\end{figure}
+
+Para evaluar formalmente el espesor de pared mínimo requerido ($t_{\text{mín}}$) bajo los estándares de diseño mecánico aplicables, se implementan las ecuaciones de esfuerzo límite. Según la norma ISO 4427, el espesor mínimo para tuberías termoplásticas se calcula a partir de la Resistencia Mínima Requerida (MRS) y el coeficiente de diseño ($C=1.25$ para agua/fluidos industriales a \SI{20}{\celsius}) mediante la Ecuación~\ref{eq:t_iso}:
+
+\begin{equation}
+    t_{\text{mín, ISO}} = \frac{P_{\text{diseño}} \cdot OD}{2 \cdot \left( \frac{MRS}{C} \right) + P_{\text{diseño}}}
+    \label{eq:t_iso}
+\end{equation}
+
+Por su parte, el código de tuberías de proceso ASME B31.3 (Sección A304.1.2) define el espesor mínimo en función del esfuerzo hidrostático de diseño ($HDS = \SI{5.0}{\mega\pascal}$ para PE100 a condiciones industriales, equivalente a un factor de seguridad del \SI{50}{\percent} sobre el MRS) a través de la Ecuación~\ref{eq:t_asme}:
+
+\begin{equation}
+    t_{\text{mín, ASME}} = \frac{P_{\text{diseño}} \cdot OD}{2 \cdot HDS + P_{\text{diseño}}}
+    \label{eq:t_asme}
+\end{equation}
+
+La Tabla~\ref{tab:espesores_sdr_disenio} consolida los resultados cuantitativos de espesores mínimos y la selección del SDR comercial requerido para ambos circuitos de proceso en los escenarios global y local aislado, utilizando un diámetro exterior base $OD = \SI{315.0}{\mm}$.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Cálculo de espesor de pared mínimo y selección de SDR de diseño mecánico.}
+    \label{tab:espesores_sdr_disenio}
+    \setcounter{itemcount}{0}
+    \begin{tabularx}{\textwidth}{@{}NXcccccc>{\raggedright\arraybackslash}X@{}}
+        \toprule
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Servicio / Fluido} & \textbf{Escenario} & \textbf{Norma} & \textbf{$P_{\text{est}}$} & \textbf{$t_{\text{mín}}$} & \textbf{SDR} & \textbf{SDR} & \textbf{Evaluación} \\
+        & & & & \textbf{[bar]} & \textbf{[mm]} & \textbf{Req.} & \textbf{Sel.} & \textbf{SDR 17 Original} \\
+        \midrule
+        & Salmuera Saturada & Global & ISO 4427 & 18.90 & 33.28 & 9.46 & SDR 9 & Falla (+89.0\% sobrepresión) \\
+        & Salmuera Saturada & Global & ASME B31.3 & 18.90 & 50.07 & 6.29 & SDR 6 & Falla (+202.4\% sobrepresión) \\
+        & Salmuera Saturada & Local & ISO 4427 & 1.84 & 3.58 & 88.00 & SDR 17 & Cumple (81.6\% margen) \\
+        & Salmuera Saturada & Local & ASME B31.3 & 1.84 & 5.68 & 55.39 & SDR 17 & Cumple (44.1\% margen) \\
+        \midrule
+        & Condensado (Agua) & Global & ISO 4427 & 15.75 & 28.23 & 11.16 & SDR 11 & Falla (+57.5\% sobrepresión) \\
+        & Condensado (Agua) & Global & ASME B31.3 & 15.75 & 42.86 & 7.35 & SDR 7.4 & Falla (+152.0\% sobrepresión) \\
+        & Condensado (Agua) & Local & ISO 4427 & 1.53 & 2.99 & 105.00 & SDR 17 & Cumple (84.7\% margen) \\
+        & Condensado (Agua) & Local & ASME B31.3 & 1.53 & 4.75 & 66.36 & SDR 17 & Cumple (47.2\% margen) \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Con base en la evaluación mecánica estructurada en la Tabla~\ref{tab:espesores_sdr_disenio}, se definen las siguientes conclusiones de diseño técnico:
+
+1. Si no se modifica el sistema y se opera bajo la configuración global original (sin válvulas de aislamiento), la tubería propuesta de SDR 17 experimentará una falla estructural inminente. El circuito de salmuera requeriría tubería de mayor espesor con relación **SDR 9** (norma ISO) o **SDR 6** (norma ASME), lo cual incrementa significativamente el peso de la tubería, reduce el diámetro interno de flujo y eleva sustancialmente el costo del material plático.
+
+2. La alternativa de optimización técnica e instalación civil más conveniente consiste en la instalación de dos **válvulas de seccionamiento y aislamiento automáticas** en las cámaras de conexión del lanzamiento (Km 16.5) y llegada (Km 16.9) de la PHD. Al activarse el cierre de estas válvulas en paradas del salmueroducto, se confina el sifón de forma aislada, limitando la columna estática al desnivel de la PHD (\SI{15.60}{\meter}). 
+
+3. Bajo la condición de tramo aislado localmente, la presión máxima en el fondo disminuye a \SI{1.84}{bar} (salmuera) y \SI{1.53}{bar} (condensados). Bajo esta configuración de proceso, la tubería originalmente diseñada de **HDPE PE100 SDR 17** cumple con un amplio factor de seguridad bajo ambas normativas, eliminando la necesidad de sobrediseñar el espesor de la red y garantizando la viabilidad del proyecto de profundización sin incurrir en sobrecostos de tuberías especiales.
+

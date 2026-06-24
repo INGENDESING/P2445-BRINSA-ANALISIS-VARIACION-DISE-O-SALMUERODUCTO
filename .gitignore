@@ -1,0 +1,24 @@
+# Archivos de diseño y respaldos pesados
+PERFILPROYECTO.dxf
+PERFILPROYECTO.bak
+
+# Archivos de compilación LaTeX
+FORMATO LATEX CON ENCABEZADO/build/
+FORMATO LATEX CON ENCABEZADO/*.aux
+FORMATO LATEX CON ENCABEZADO/*.log
+FORMATO LATEX CON ENCABEZADO/*.toc
+FORMATO LATEX CON ENCABEZADO/*.lot
+FORMATO LATEX CON ENCABEZADO/*.lof
+FORMATO LATEX CON ENCABEZADO/*.out
+FORMATO LATEX CON ENCABEZADO/*.synctex.gz
+FORMATO LATEX CON ENCABEZADO/*.spl
+FORMATO LATEX CON ENCABEZADO/.claude/
+
+# Archivos temporales y scripts de scratch locales
+scratch/
+__pycache__/
+*.pyc
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
