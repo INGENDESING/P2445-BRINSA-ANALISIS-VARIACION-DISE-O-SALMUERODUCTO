@@ -12,6 +12,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- CSS Estilos Premium -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Estilos puntuales de la sección de auditoría de campo (reutiliza el tema) -->
+    <style>
+        .audit-section { background: var(--bg-card); backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden;
+            box-shadow: var(--shadow-md); }
+        .audit-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color);
+            background-color: rgba(255,255,255,0.02); }
+        .audit-header h2 { font-size: 0.95rem; font-weight: 700; letter-spacing: .5px;
+            color: var(--text-primary); margin: 0; }
+        .audit-header .audit-source { font-size: .72rem; color: var(--accent-cyan);
+            font-weight: 600; text-transform: uppercase; letter-spacing: .6px; }
+        .audit-header p { font-size: .78rem; color: var(--text-secondary); margin: .4rem 0 0;
+            line-height: 1.5; }
+        .audit-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .audit-table-wrap { overflow-x: auto; }
+        .audit-note { font-size: .72rem; color: var(--text-secondary); margin-top: .75rem; }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -215,6 +232,83 @@
                             </div>
                             <div class="chart-caption">
                                 <p><strong>Curva de Pérdida de Presión Dinámica vs Caudal:</strong> Compara la caída de presión hidrodinámica total del tramo en función del régimen de flujo para el trazado superficial original y la alternativa de profundización por PHD.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN DE AUDITORÍA DE CAMPO (SCADA) -->
+                <section class="audit-section">
+                    <div class="audit-header">
+                        <span class="audit-source">Auditoría de Campo · SCADA ABB System 800xA</span>
+                        <h2>Validación con el Estado Real de Planta (mímicos DS6 / DS1)</h2>
+                        <p>La presión estática en parada obedece a <em>P = ρ·g·Δh</em> y es <strong>independiente del caudal</strong>: idéntica en la condición operativa actual y en el máximo futuro de 300,000 kg/h. El bajo flujo presente no atenúa el sobreesfuerzo del SDR 17.</p>
+                    </div>
+                    <div class="audit-body">
+                        <!-- Indicadores de la auditoría -->
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <span class="kpi-label">Estática Salmuera (parada)</span>
+                                <div class="kpi-value-area">
+                                    <span class="kpi-value">18.90</span>
+                                    <span class="kpi-unit">bar</span>
+                                </div>
+                                <div class="kpi-footer">Independiente del flujo · igual a 300,000 kg/h</div>
+                            </div>
+                            <div class="kpi-card highlight-card">
+                                <span class="kpi-label">Sobreesfuerzo SDR 17</span>
+                                <div class="kpi-value-area">
+                                    <span class="kpi-value">+89.0</span>
+                                    <span class="kpi-unit">%</span>
+                                </div>
+                                <div class="kpi-footer">Persiste a flujo máximo (PN10 = 10 bar)</div>
+                            </div>
+                            <div class="kpi-card">
+                                <span class="kpi-label">Caudal Actual (FT-SA3001)</span>
+                                <div class="kpi-value-area">
+                                    <span class="kpi-value">96.39</span>
+                                    <span class="kpi-unit">m³/h</span>
+                                </div>
+                                <div class="kpi-footer">vs 250 m³/h de diseño (futuro)</div>
+                            </div>
+                            <div class="kpi-card">
+                                <span class="kpi-label">Gradiente Medido DS6</span>
+                                <div class="kpi-value-area">
+                                    <span class="kpi-value">3.73</span>
+                                    <span class="kpi-unit">bar</span>
+                                </div>
+                                <div class="kpi-footer">PTSA-3001 → PTSA-3002 (lazo PIC3002)</div>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de presiones de campo -->
+                        <div class="audit-table-wrap">
+                            <table class="elsevier-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tag (SCADA DS6)</th>
+                                        <th>Campo [psi]</th>
+                                        <th>SI [bar]</th>
+                                        <th>Función</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>PT-3091</td><td>120.34</td><td>8.30</td><td>Presión de recibo TK327</td></tr>
+                                    <tr><td>PTSA-3001</td><td>90.46</td><td>6.24</td><td>Cabeza de conducción</td></tr>
+                                    <tr><td>PT-SAL-K8B</td><td>66.10</td><td>4.56</td><td>Presión búnker K8</td></tr>
+                                    <tr><td>PT-SAL-K17</td><td>44.60</td><td>3.08</td><td>Presión búnker K17</td></tr>
+                                    <tr><td>PTSA-3002</td><td>36.35</td><td>2.51</td><td>Presión final de tramo</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="audit-note">Conversión 1 psi = 0.0689476 bar. Lecturas de alta confianza (mímico DS6). La línea de condensados (DS1) se auditó de forma cualitativa por baja resolución de la captura.</p>
+                        </div>
+
+                        <!-- Hallazgo crítico: válvulas existentes -->
+                        <div class="alert-card alert-warning">
+                            <div class="alert-icon">◆</div>
+                            <div class="alert-info">
+                                <h4>Hallazgo: válvulas de aislamiento ya instaladas</h4>
+                                <p>El SCADA evidencia las válvulas de corte <strong>ESDV-SAL-K17</strong> y <strong>ESDV-SAL-K8</strong> en operación (realimentación R/CO, interlocks de búnker/puerta). La alternativa de aislamiento podría no requerir obra mayor; pendiente verificar su posición hidráulica respecto al cruce PHD Km 16.5.</p>
                             </div>
                         </div>
                     </div>

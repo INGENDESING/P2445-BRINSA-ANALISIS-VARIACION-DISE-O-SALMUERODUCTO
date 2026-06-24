@@ -35,3 +35,76 @@
    - Informe técnico PDF actualizado: `FORMATO LATEX CON ENCABEZADO/build/P202609-BRI-SE-CIV-INF-001.pdf`
    - Código de simulación Python: `calcular_presion_global.py`
    - Dashboard Web interactivo: `index.html` y `app.js`
+
+---
+
+# Plan 2: Auditoría técnica SCADA (estado de planta) vs. modelo hidráulico (BRINSA S.A.)
+
+## Contexto
+- Objetivo: Auditar el estado real de campo (capturas SCADA ABB 800xA `plc1.jpg` DS1 Condensados y `plc2.jpg` DS6 Salmuera) contra el modelo de diseño y las bases congeladas, bajo CLAUDE.md (par técnico crítico, trazabilidad, coherencia SI, no inventar valores).
+- Cliente / Proyecto DML: BRINSA S.A. / Proyecto P10 HROSERO 24JUN26.
+- Normas aplicables: ISO 4427, ASME B31.3, ASME B31.4, Crane TP-410.
+
+## Consideración rectora (instrucción del cliente, 24/06/2026)
+- El caudal del SCADA es la condición operativa ACTUAL; el proyecto contempla un MÁXIMO FUTURO de 300 000 kg/h por línea (salmuera y condensado).
+- La cabeza estática es INDEPENDIENTE del flujo (P = ρ·g·Δh): idéntica en la condición actual y en el máximo futuro. La falla del SDR 17 en parada (18.90/15.75 bar vs PN10) NO se alivia con el bajo flujo actual y persiste a flujo máximo. El caudal de campo no es discrepancia, es la condición presente; el 300 000 kg/h gobierna la dinámica y el golpe de ariete.
+
+## Supuestos clave
+- [x] Lecturas de presión PT-* del mímico DS6 interpretadas en psi (rótulo del SCADA). (Fuente: `plc2.jpg`).
+- [x] Caudal de campo salmuera = 96.39 m³/h (FT-SA3001). (Fuente: `plc2.jpg`).
+- [ ] Caudal de campo condensado: no legible en `plc1.jpg` (baja resolución) -> pendiente captura nítida; no se inventa.
+- [x] Estática común a ambas envolventes por independencia del flujo (cota Sesquilé 2703.37 -> fondo PHD 2542.75, Δh=160.62 m).
+
+## Tareas
+- [x] T1. Recalibrar modelo: `auditoria_campo.py` con dos envolventes por línea (campo actual + máx. futuro 300 000 kg/h), estática común explícita, validación dinámica vs. gradiente medido en DS6.
+- [x] T2. Inventario de instrumentación (tabla Elsevier: tag, lectura, unidad campo, conversión SI, confianza) para ambos mímicos.
+- [x] T3. Contraste campo vs. modelo recalibrado; márgenes operativos y coherencia dimensional.
+- [x] T4. Hallazgos críticos: ESDV-SAL-K17/K8 existentes (posición vs PHD Km 16.5); estática flow-independent; hipótesis 18.90 bar no validada en campo; anomalía Pd_FIC5A3001; vigencia del dato (sello 12-jul-2024).
+- [x] T5. Redactar `auditoria_scada_brinsa.md` (Markdown técnico, secuencia Objetivo->...->Referencias).
+- [x] T6. Cierre: `## Revisión 2` en este archivo y actualización de `contexto.md`.
+
+## Riesgos / Puntos de verificación
+- [x] Coherencia dimensional: presiones en bar y kPa además del psi de campo (factor 1 psi = 0.0689476 bar).
+- [x] No invención: valores ilegibles de `plc1.jpg` marcados "pendiente / baja confianza".
+- [x] Validación cruzada: gradiente de presión de campo en DS6 (incluye estrangulamiento PIC3002 y elevaciones) debe ser >= pérdidas por fricción del modelo, no contradecirlas.
+
+## Revisión 2
+1. Resumen de cambios: Se auditaron las capturas SCADA `plc2.jpg` (DS6 Salmuera, alta confianza) y `plc1.jpg` (DS1 Condensados, baja confianza). Se creó `auditoria_campo.py`, que demuestra que la cabeza estática (18.90 bar salmuera / 15.75 bar condensado) es independiente del flujo y, por tanto, idéntica en la condición operativa actual (~96 m³/h) y en el máximo futuro de 300 000 kg/h; la relación estática/dinámica (97x a flujo máximo) confirma que la integridad la fija la estática y que el SDR 17 falla (+89.0 % / +57.5 %) en parada en ambas envolventes. Se redactó el entregable `auditoria_scada_brinsa.md`.
+2. Desviaciones respecto al plan: Ninguna. El cliente precisó la consideración rectora (flujo actual vs. máximo futuro 300 000 kg/h con estática común) y se incorporó como eje del análisis.
+3. Hallazgo central: existen válvulas de corte ESDV-SAL-K17 y ESDV-SAL-K8 en operación; la alternativa de aislamiento puede no requerir obra mayor, sujeto a verificar su posición hidráulica respecto al cruce PHD Km 16.5.
+4. Limitaciones / trabajo futuro: línea de condensados auditada cualitativamente (pendiente captura nítida de `plc1.jpg`); hipótesis de 18.90/15.75 bar pendiente de validación con registro de presión en parada real; anomalía del lazo Pd_FIC5A3001 a diagnosticar; vigencia del dato (sello 12-jul-2024) a confirmar.
+5. Entregables y rutas:
+   - Auditoría: `auditoria_scada_brinsa.md`
+   - Modelo recalibrado: `auditoria_campo.py`
+   - Capturas fuente: `plc1.jpg`, `plc2.jpg`
+
+---
+
+# Plan 3: Integrar la auditoría SCADA al informe LaTeX y al Dashboard web (BRINSA S.A.)
+
+## Contexto
+- Objetivo: Incorporar los hallazgos de la auditoría (estática independiente del flujo, dos envolventes, presiones de campo, válvulas ESDV-SAL-K17/K8 ya existentes) al informe técnico entregable y al Dashboard interactivo.
+- Inconsistencia detectada a corregir: el informe (§10.4 pto 2 y §12) recomienda "instalar" válvulas de aislamiento, pero el SCADA evidencia que ESDV-SAL-K17/K8 ya están instaladas -> reformular a "verificar posición/aprovechar existentes".
+
+## Tareas
+- [x] T1. LaTeX: nueva sección `sections/10b_auditoria_scada.tex` (Auditoría de Campo y Validación con SCADA) + `\input` en `main.tex`.
+- [x] T2. LaTeX: actualizar `10_analisis.tex` §10.4 pto 2 (ESDV ya existentes, referencia a la nueva sección).
+- [x] T3. LaTeX: añadir fila a `11_conclusiones.tex` (estática flow-independent + ESDV existentes).
+- [x] T4. LaTeX: reformular `12_recomendaciones.tex` (verificar ESDV existentes; validar estática en parada real).
+- [x] T5. LaTeX: recompilar `P202609-BRI-SE-CIV-INF-001.pdf` y verificar sin errores.
+- [x] T6. Dashboard: añadir sección "Auditoría de Campo (SCADA)" en `index.html` (tabla de campo, ESDV, nota estática flow-independent).
+- [x] T7. Verificación cruzada y cierre (`## Revisión 3`, `contexto.md`).
+
+## Riesgos / Puntos de verificación
+- [x] Compilación LaTeX sin errores; numeración de secciones y \ref cruzadas correctas tras insertar la nueva sección. (PDF 29 págs; 0 referencias indefinidas; único `!` es el clash preexistente `\Bbbk` del preámbulo, no fatal.)
+- [x] Sin viñetas en el informe (usar tabularx estilo Elsevier); escapar `_` en tags (`\texttt{}`).
+- [x] Coherencia: cifras del informe/Dashboard idénticas a `auditoria_campo.py` (18.90/15.75 bar; +89.0%/+57.5%).
+
+## Revisión 3
+1. Resumen de cambios: Se integró la auditoría SCADA a ambos entregables. En LaTeX se creó la Sección "Auditoría de Campo y Validación con SCADA" (`10b_auditoria_scada.tex`, con tablas de envolventes dinámicas, presiones de campo DS6 y hallazgo ESDV) y se actualizaron `10_analisis.tex`, `11_conclusiones.tex` y `12_recomendaciones.tex` para reflejar la estática independiente del flujo y la existencia de las válvulas ESDV-SAL-K17/K8. El informe `P202609-BRI-SE-CIV-INF-001.pdf` se recompiló a 29 páginas sin errores. En el Dashboard se añadió la sección "Auditoría de Campo (SCADA)" en `index.html` (KPIs, tabla de presiones, hallazgo ESDV) reutilizando el tema existente.
+2. Desviaciones respecto al plan: Se corrigió una inconsistencia del informe previo que recomendaba "instalar" válvulas siendo que ya existen (reformulado a "verificar/aprovechar"). La recompilación se ejecutó invocando `pdflatex` directamente (el wrapper `.ps1` con `-ExecutionPolicy Bypass` fue bloqueado por política de seguridad).
+3. Limitaciones / trabajo futuro: persisten los bloqueos de la Revisión 2 (posición de ESDV, validación en parada real, captura nítida de DS1, lazo Pd_FIC5A3001, vigencia del dato). No se ejecutó commit/push (no solicitado).
+4. Entregables y rutas:
+   - Informe: `FORMATO LATEX CON ENCABEZADO/build/P202609-BRI-SE-CIV-INF-001.pdf` (y copia en raíz del informe).
+   - Sección nueva: `FORMATO LATEX CON ENCABEZADO/sections/10b_auditoria_scada.tex`.
+   - Dashboard: `index.html` (sección audit-section).
