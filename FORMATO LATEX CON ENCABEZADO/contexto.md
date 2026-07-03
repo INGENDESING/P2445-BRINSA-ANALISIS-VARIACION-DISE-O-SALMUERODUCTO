@@ -3,7 +3,7 @@
 ## Estado actual
 - **Última tarea completada:** Corrección del desbordamiento de la Tabla 22 en `sections/12_recomendaciones.tex` mediante conversión a `longtable`, separación de encabezados (`\endfirsthead`/`\endhead`) para evitar etiqueta duplicada, reordenación lógica de filas 1–6 y reposicionamiento del contador `itemcount`.
 - **Próxima tarea pendiente:** Resolver bibliografía no citada formalmente (`references/bibliografia.bib` no tiene `\cite` en el texto).
-- **Fecha de última actualización:** 2026-07-03 (corregida Tabla 22).
+- **Fecha de última actualización:** 2026-07-03 (corregida Tabla 22; commit 057f454 y push a origin/main completados).
 
 ## Bases de diseño congeladas
 - **Caudal de diseño nominal:** 300 m³/h para salmuera y 300 m³/h para condensado.
