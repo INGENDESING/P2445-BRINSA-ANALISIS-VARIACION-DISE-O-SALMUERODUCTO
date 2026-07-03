@@ -14,21 +14,26 @@ g = 9.80665  # m/s^2
 # Propiedades de los fluidos
 fluidos = {
     "Salmuera Saturada (26% NaCl)": {
-        "densidad": 1200.0,    # kg/m^3
-        "viscosidad": 0.0016,  # Pa*s
-        "flujo_masico": 300000.0  # kg/h
+        "densidad": 1200.0,       # kg/m^3
+        "viscosidad": 0.0016,     # Pa*s
+        "caudal_volumetrico_m3h": 300.0  # m3/h
     },
     "Condensado (Agua Industrial)": {
-        "densidad": 1000.0,    # kg/m^3
-        "viscosidad": 0.0010,  # Pa*s
-        "flujo_masico": 300000.0  # kg/h
+        "densidad": 1000.0,       # kg/m^3
+        "viscosidad": 0.0010,     # Pa*s
+        "caudal_volumetrico_m3h": 300.0  # m3/h
     }
 }
 
-# Parámetros geométricos (HDPE SDR 17 - 12" NPS)
-diametro_hdpe_12in = {
-    "OD": 0.315,  # m
-    "ID": 0.278   # m
+# Parámetros geométricos (HDPE PE100 - 12" NPS)
+# Salmuera: SDR 11; Condensado: SDR 13.6
+diametro_hdpe_12in_salmuera = {
+    "OD": 0.315,    # m
+    "ID": 0.25773   # m
+}
+diametro_hdpe_12in_condensado = {
+    "OD": 0.315,    # m
+    "ID": 0.26868   # m
 }
 rugosidad_hdpe = 1.5e-6  # m
 

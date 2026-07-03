@@ -89,15 +89,16 @@ Para evaluar rigurosamente el diseño, se estructuró una matriz de casos cruzan
     \centering
     \caption{Matriz de escenarios operativos y casos de simulación.}
     \label{tab:escenarios}
-    \begin{tabularx}{\textwidth}{@{}cccccc@{}}
+    \small
+    \begin{tabularx}{\textwidth}{@{}c>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}Xcccc@{}}
         \toprule
-        \textbf{Caso} & \textbf{Configuración} & \textbf{Fluido} & \textbf{Longitud} & \textbf{Flujo Másico} & \textbf{Cota Clave Mín.} \\
-        & & & \textbf{[\SI{}{\meter}]} & \textbf{[\SI{}{\kilogram\per\hour}]} & \textbf{[m.s.n.m.]} \\
+        \textbf{Caso} & \textbf{Configuración} & \textbf{Fluido} & \textbf{Longitud} & \textbf{Caudal} & \textbf{Cota clave mín.} \\
+        & & & \textbf{[m]} & \textbf{[m³/h]} & \textbf{[m.s.n.m.]} \\
         \midrule
-        1-A & Superficial (Existente) & Salmuera Saturada & 450.00 & 300,000 & 2557.56 \\
-        1-B & Superficial (Existente) & Condensado & 450.00 & 300,000 & 2557.56 \\
-        2-A & Enterrada (PHD) & Salmuera Saturada & 452.26 & 300,000 & 2542.75 \\
-        2-B & Enterrada (PHD) & Condensado & 452.26 & 300,000 & 2542.75 \\
+        1-A & Superficial (existente) & Salmuera saturada & 450.00 & 300.00 & 2557.56 \\
+        1-B & Superficial (existente) & Condensado & 450.00 & 300.00 & 2557.56 \\
+        2-A & Enterrada (PHD) & Salmuera saturada & 452.26 & 300.00 & 2542.75 \\
+        2-B & Enterrada (PHD) & Condensado & 452.26 & 300.00 & 2542.75 \\
         \bottomrule
     \end{tabularx}
 \end{table}

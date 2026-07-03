@@ -5,7 +5,7 @@
 
 El presente documento expone la validación hidráulica y el análisis de riesgos técnicos correspondientes a la reubicación de dos líneas del salmueroducto de BRINSA S.A. en cercanías del Humedal Arrieros (Tocancipá, Cundinamarca). El diseño de reubicación por Perforación Horizontal Dirigida (PHD) surge ante un requerimiento de la autoridad ambiental para mitigar el impacto sobre el ecosistema superficial húmedo del parque Jaime Duque.
 
-La evaluación técnica comparó el trazado superficial original (\SI{450.00}{\meter}) frente a la profundización vertical propuesta de \SI{15.60}{\meter} (longitud inclinada de \SI{452.26}{\meter}), empleando tubería de \SI{12}{in} NPS HDPE PE100 SDR 17 para conducir salmuera saturada al \SI{26}{\percent} p/p de \text{NaCl} y condensados de vapor de forma paralela.
+La evaluación técnica comparó el trazado superficial original (\SI{450.00}{\meter}) frente a la profundización vertical propuesta de \SI{15.60}{\meter} (longitud inclinada de \SI{452.26}{\meter}), empleando tubería de \SI{12}{in} NPS HDPE PE100 SDR 13.6 para condensados de vapor y SDR 11 para conducir salmuera saturada al \SI{26}{\percent} p/p de \text{NaCl}, de forma paralela.
 
 \begin{table}[htbp]
     \centering
@@ -15,17 +15,18 @@ La evaluación técnica comparó el trazado superficial original (\SI{450.00}{\m
         \toprule
         \textbf{Parámetro} & \textbf{Línea de Salmuera} & \textbf{Línea de Condensados} \\
         \midrule
-        Flujo de diseño nominal & \SI{300000}{\kilogram\per\hour} & \SI{300000}{\kilogram\per\hour} \\
-        Caudal volumétrico equivalente & \SI{250.00}{\cubic\meter\per\hour} (\SI{69.44}{\liter\per\second}) & \SI{300.00}{\cubic\meter\per\hour} (\SI{83.33}{\liter\per\second}) \\
-        Velocidad nominal de operación & \SI{1.14}{\meter\per\second} & \SI{1.37}{\meter\per\second} \\
-        Pérdida de presión en trazado superficial & \SI{19.25}{\kilo\pascal} (\SI{0.19}{bar}) & \SI{21.19}{\kilo\pascal} (\SI{0.21}{bar}) \\
-        Pérdida de presión en trazado PHD enterrado & \SI{19.58}{\kilo\pascal} (\SI{0.20}{bar}) & \SI{21.58}{\kilo\pascal} (\SI{0.22}{bar}) \\
-        Incremento dinámico por profundización & \SI{1.72}{\percent} (\SI{0.33}{\kilo\pascal}) & \SI{1.83}{\percent} (\SI{0.39}{\kilo\pascal}) \\
-        Presión hidrostática de fondo (Sifón lleno) & \SI{183.58}{\kilo\pascal} (\SI{1.84}{bar}) & \SI{152.98}{\kilo\pascal} (\SI{1.53}{bar}) \\
+        Caudal de diseño nominal & \SI{300.00}{\cubic\meter\per\hour} & \SI{300.00}{\cubic\meter\per\hour} \\
+        Velocidad nominal de operación & \SI{1.60}{\meter\per\second} & \SI{1.47}{\meter\per\second} \\
+        Pérdida de presión en trazado superficial & \SI{38.56}{\kilo\pascal} (\SI{0.39}{bar}) & \SI{24.97}{\kilo\pascal} (\SI{0.25}{bar}) \\
+        Pérdida de presión en trazado PHD enterrado & \SI{39.21}{\kilo\pascal} (\SI{0.39}{bar}) & \SI{25.42}{\kilo\pascal} (\SI{0.25}{bar}) \\
+        Incremento dinámico por profundización & \SI{1.69}{\percent} (\SI{0.65}{\kilo\pascal}) & \SI{1.80}{\percent} (\SI{0.45}{\kilo\pascal}) \\
+        Presión hidrostática de fondo (Sifón lleno, local) & \SI{183.58}{\kilo\pascal} (\SI{1.84}{bar}) & \SI{152.98}{\kilo\pascal} (\SI{1.53}{bar}) \\
+        Presión hidrostática de fondo (global, sin aislamiento) & \SI{1358.96}{\kilo\pascal} (\SI{13.59}{bar}) & \SI{532.16}{\kilo\pascal} (\SI{5.32}{bar}) \\
+        SDR requerido (global, ISO 4427) & SDR 11 & SDR 13.6 cumple \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-Los resultados cuantitativos demuestran la viabilidad hidráulica del trazado PHD, con un impacto dinámico en la succión de la estación Km8 menor al \SI{2}{\percent}. No obstante, la configuración en sifón invertido activa tres riesgos operativos críticos que deben mitigarse: (1) acumulación de sólidos o cristales de sal en el fondo del túnel ante caudales menores a \SI{55}{\liter\per\second}, (2) entrampamiento de aire en las crestas superior del perfil (lanzamiento y llegada) que genera bloqueos de flujo, y (3) sobreesfuerzo mecánico por presión hidrostática en el fondo de la perforación (\SI{1.84}{bar} adicionales). Se recomienda instalar ventosas automáticas de triple efecto en los extremos superiores, lavado regular con condensado y verificación mecánica del espesor de pared.
+Los resultados cuantitativos demuestran la viabilidad hidráulica del trazado PHD, con un impacto dinámico en la succión de la estación Km8 menor al \SI{2}{\percent}. No obstante, la configuración en sifón invertido activa riesgos operativos y mecánicos críticos que deben mitigarse: (1) acumulación de sólidos o cristales de sal en el fondo del túnel ante caudales menores a \SI{47}{\liter\per\second}; (2) entrampamiento de aire en las crestas superiores del perfil (lanzamiento y llegada) que genera bloqueos de flujo; (3) sobreesfuerzo mecánico por presión hidrostática en el fondo de la perforación cuando el sifón no se aisla con válvulas (\SI{13.59}{bar} en salmuera, \SI{5.32}{bar} en condensado), lo que requiere SDR 11 para salmuera en el escenario global; y (4) estabilidad geotécnica del tubo enterrado en zona inundable (cotas de terreno 2560--2563$\ \text{m.s.n.m.}$), con riesgo de flotación en tubo vacío y erosión de la cobertura. Se recomienda instalar ventosas automáticas de triple efecto en los extremos superiores, lavado regular con condensado, verificar la clase mecánica de la tubería y evaluar lastre/anclaje en el tramo del humedal.
 
 \newpage

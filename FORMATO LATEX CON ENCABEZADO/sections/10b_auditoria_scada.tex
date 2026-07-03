@@ -8,34 +8,34 @@ Con el fin de validar las bases del modelo hidráulico contra la operación real
 \subsection{Independencia de la presión estática respecto del caudal}
 \label{ssec:auditoria_flujo}
 
-El caudal registrado en el SCADA corresponde a la condición operativa actual del sistema, mientras que el proyecto contempla un máximo futuro de \SI{300000}{\kilogram\per\hour} por línea. La cabeza estática en parada obedece a la relación hidrostática $P = \rho\,g\,\Delta h$, función exclusivamente de la cota y la densidad y, por tanto, independiente del caudal. En consecuencia, la presión estática en el fondo del sifón es idéntica en ambas envolventes: \SI{18.90}{bar} para salmuera y \SI{15.75}{bar} para condensado. El bajo caudal operativo presente no atenúa el sobreesfuerzo de la tubería SDR 17 (\SI{+89.0}{\percent} en salmuera y \SI{+57.5}{\percent} en condensado), el cual persiste invariable al alcanzar el flujo máximo de diseño. La estática gobierna la selección de SDR y el esquema de aislamiento, en tanto que el flujo máximo gobierna las pérdidas dinámicas y el análisis de golpe de ariete.
+El caudal registrado en el SCADA corresponde a la condición operativa actual del sistema, mientras que el proyecto contempla un máximo futuro de \SI{300.00}{\cubic\meter\per\hour} por línea. La cabeza estática en parada obedece a la relación hidrostática $P = \rho\,g\,\Delta h$, función exclusivamente de la cota y la densidad y, por tanto, independiente del caudal. Tras verificación en el DXF, la presión estática en el fondo del sifón es idéntica en ambas envolventes: \SI{13.59}{bar} para salmuera (referencia = tanque de quiebre a \SI{2658.24}{m.s.n.m.}) y \SI{5.32}{bar} para condensado (referencia provisional = estación de bombeo a \SI{2597}{m.s.n.m.}). El bajo caudal operativo presente no atenúa el sobreesfuerzo de la tubería SDR 13.6 en salmuera (\SI{+7.0}{\percent}); la estática gobierna la selección de SDR y el esquema de aislamiento, en tanto que el flujo máximo gobierna las pérdidas dinámicas y el análisis de golpe de ariete.
 
 La Tabla~\ref{tab:envolventes_dinamicas} contrasta las pérdidas dinámicas en el tramo enterrado para la condición actual de campo y el máximo futuro, evidenciando que ambas son dos órdenes de magnitud inferiores a la estática.
 
 \begin{table}[htbp]
     \centering
-    \caption{Pérdidas dinámicas en el tramo PHD (\SI{452.26}{\meter}, ID \SI{278}{\mm}) por envolvente de caudal.}
+    \caption{Pérdidas dinámicas en el tramo PHD (\SI{452.26}{\meter}, ID \SI{257.73}{\mm} para salmuera y \SI{268.68}{\mm} para condensado) por envolvente de caudal.}
     \label{tab:envolventes_dinamicas}
     \setcounter{itemcount}{0}
     \begin{tabularx}{\textwidth}{@{}NXlrrr@{}}
         \toprule
         \multicolumn{1}{c}{\textbf{Item}} & \textbf{Fluido} & \textbf{Envolvente} & \textbf{Q [m³/h]} & \textbf{v [m/s]} & \textbf{$\Delta P_{\text{din}}$ [bar]} \\
         \midrule
-        & Salmuera saturada & Máximo futuro  & 250.00 & 1.144 & 0.196 \\
-        & Salmuera saturada & Actual (campo) &  96.39 & 0.441 & 0.035 \\
-        & Condensado        & Máximo futuro  & 300.00 & 1.373 & 0.216 \\
+        & Salmuera saturada & Máximo futuro  & 300.00 & 1.597 & 0.392 \\
+        & Salmuera saturada & Actual (campo) &  96.39 & 0.513 & 0.050 \\
+        & Condensado        & Máximo futuro  & 300.00 & 1.470 & 0.254 \\
         & Condensado        & Actual (campo) & N/D    & ---   & ---   \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-La relación entre la presión estática (\SI{18.90}{bar}) y la pérdida dinámica del máximo futuro (\SI{0.196}{bar}) es de \num{97} a \num{1}, lo que confirma que la integridad mecánica del tramo PHD la fija la columna hidrostática y no el régimen de flujo.
+La relación entre la presión estática de salmuera (\SI{13.59}{bar}) y la pérdida dinámica del máximo futuro (\SI{0.392}{bar}) es de aproximadamente \num{35} a \num{1}, lo que confirma que la integridad mecánica del tramo PHD la fija la columna hidrostática y no el régimen de flujo.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{Instrumentación y presiones de campo (mímico DS6)}
 \label{ssec:auditoria_campo}
 
-La Tabla~\ref{tab:presiones_campo} consolida las presiones medidas a lo largo de la conducción de salmuera. El perfil desciende de \SI{6.24}{bar} en la cabeza \texttt{PTSA-3001} a \SI{2.51}{bar} en \texttt{PTSA-3002}, con un gradiente de \SI{3.73}{bar}. Esta caída está dominada por el estrangulamiento del lazo de control de presión \texttt{PIC3002} (salida \SI{27}{\percent}, set-point \SI{50}{psi} frente a variable de proceso \SI{36.3}{psi}), las diferencias de cota y los búnkeres K17/K8, y no por la fricción del tubo; por ello no es comparable de forma directa con la pérdida por fricción de \SI{0.035}{bar} calculada para el tramo PHD a caudal actual, resultando consistente con el modelo.
+La Tabla~\ref{tab:presiones_campo} consolida las presiones medidas a lo largo de la conducción de salmuera. El perfil desciende de \SI{6.24}{bar} en la cabeza \texttt{PTSA-3001} a \SI{2.51}{bar} en \texttt{PTSA-3002}, con un gradiente de \SI{3.73}{bar}. Esta caída está dominada por el estrangulamiento del lazo de control de presión \texttt{PIC3002} (salida \SI{27}{\percent}, set-point \SI{50}{psi} frente a variable de proceso \SI{36.3}{psi}), las diferencias de cota y los búnkeres K17/K8, y no por la fricción del tubo; por ello no es comparable de forma directa con la pérdida por fricción de \SI{0.050}{bar} calculada para el tramo PHD a caudal actual, resultando consistente con el modelo.
 
 \begin{table}[htbp]
     \centering
@@ -59,10 +59,10 @@ La Tabla~\ref{tab:presiones_campo} consolida las presiones medidas a lo largo de
 \subsection{Hallazgo: válvulas de aislamiento existentes}
 \label{ssec:auditoria_esdv}
 
-El mímico DS6 evidencia dos válvulas de corte de emergencia, \texttt{ESDV-SAL-K17} y \texttt{ESDV-SAL-K8}, con realimentación de posición remota e interlocks de búnker y puerta. Este hallazgo reformula la alternativa de mitigación por aislamiento: la infraestructura de seccionamiento automático ya existe, parcial o totalmente. El punto decisivo deja de ser la instalación de válvulas nuevas y pasa a ser la verificación de la posición hidráulica de las ESDV respecto al cruce PHD del Km 16.5 y de su lógica de disparo, para confirmar si confinan la columna de Sesquilé en parada y limitan la presión del sifón a \SI{1.84}{bar} (salmuera) y \SI{1.53}{bar} (condensado), viabilizando el SDR 17 sin obra mayor. Si las ESDV no flanquean el sifón, no cumplen esta función y se mantiene la necesidad de rediseño del SDR.
+El mímico DS6 evidencia dos válvulas de corte de emergencia, \texttt{ESDV-SAL-K17} y \texttt{ESDV-SAL-K8}, con realimentación de posición remota e interlocks de búnker y puerta. Este hallazgo reformula la alternativa de mitigación por aislamiento: la infraestructura de seccionamiento automático ya existe, parcial o totalmente. El punto decisivo deja de ser la instalación de válvulas nuevas y pasa a ser la verificación de la posición hidráulica de las ESDV respecto al cruce PHD del Km 16.5 y de su lógica de disparo, para confirmar si confinan la columna del tanque de quiebre en parada y limitan la presión del sifón a \SI{1.84}{bar} (salmuera) y \SI{1.53}{bar} (condensado), viabilizando el SDR 13.6 sin obra mayor. Si las ESDV no flanquean el sifón, no cumplen esta función y se mantiene la necesidad de rediseño a SDR 11 para salmuera.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{Limitaciones y verificaciones pendientes}
 \label{ssec:auditoria_limitaciones}
 
-La auditoría se sustenta en una instantánea fotográfica del SCADA y no en un historizador. La línea de condensados (mímico DS1) se auditó de forma cualitativa por ilegibilidad de los valores; se evita ingresar cifras no verificables. La hipótesis de \SI{18.90}{bar}/\SI{15.75}{bar} es una condición de parada inferida por cálculo hidrostático, aún no validada con un registro de presión durante una parada real con el sifón intercomunicado. Adicionalmente, se observó una anomalía en el lazo \texttt{Pd\_FIC5A3001} (variable de proceso \SI{96.4}{\cubic\meter\per\hour} muy por encima del set-point \SI{54.0}{\cubic\meter\per\hour} con salida del controlador de \SI{9.1}{\percent}), que debe diagnosticarse antes de emplear \texttt{FT-SA3001} en balances de masa.
+La auditoría se sustenta en una instantánea fotográfica del SCADA y no en un historizador. La línea de condensados (mímico DS1) se auditó de forma cualitativa por ilegibilidad de los valores; se evita ingresar cifras no verificables. La hipótesis de \SI{13.59}{bar}/\SI{5.32}{bar} es una condición de parada inferida por cálculo hidrostático con las cotas verificadas en el DXF, aún no validada con un registro de presión durante una parada real con el sifón intercomunicado. Adicionalmente, se observó una anomalía en el lazo \texttt{Pd\_FIC5A3001} (variable de proceso \SI{96.4}{\cubic\meter\per\hour} muy por encima del set-point \SI{54.0}{\cubic\meter\per\hour} con salida del controlador de \SI{9.1}{\percent}), que debe diagnosticarse antes de emplear \texttt{FT-SA3001} en balances de masa.

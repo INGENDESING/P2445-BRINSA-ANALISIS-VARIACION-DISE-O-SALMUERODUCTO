@@ -15,14 +15,15 @@ Las condiciones de operación nominales han sido establecidas por el departament
     \caption{Restricciones y condiciones operativas del sistema de conducción.}
     \label{tab:restricciones}
     \setcounter{itemcount}{0}
-    \begin{tabularx}{\textwidth}{@{}NXccl@{}}
+    \begin{tabularx}{\textwidth}{@{}NXcc>{\raggedright\arraybackslash}X@{}}
         \toprule
-        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor Establecido} & \textbf{Valor Recomendado} & \textbf{Referencia} \\
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Parámetro} & \textbf{Valor establecido} & \textbf{Valor recomendado} & \textbf{Referencia} \\
         \midrule
-        & Flujo másico nominal (ambas líneas) & \SI{300000}{\kilogram\per\hour} & --- & Información Cliente \\
-        & Velocidad de flujo en HDPE & \SI{1.14}{\meter\per\second} (salmuera) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
-        & Velocidad de flujo en HDPE & \SI{1.37}{\meter\per\second} (condensado) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
-        & Presión máxima de operación (PE100 SDR 17) & --- & \SI{10.0}{bar} & ISO 4427 / ASTM F714 \\
+        & Caudal volumétrico nominal (ambas líneas) & \SI{300.00}{\cubic\meter\per\hour} & --- & Información Cliente \\
+        & Velocidad de flujo en HDPE & \SI{1.60}{\meter\per\second} (salmuera) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
+        & Velocidad de flujo en HDPE & \SI{1.47}{\meter\per\second} (condensado) & \SI{0.9}{\meter\per\second} a \SI{3.0}{\meter\per\second} & Plastics Pipe Institute \\
+        & Presión máxima de operación (PE100 SDR 13.6) & --- & \SI{12.7}{bar} & ISO 4427 / ASTM F714 \\
+        & Presión máxima de operación (PE100 SDR 11) & --- & \SI{16.0}{bar} & ISO 4427 / ASTM F714 \\
         & Temperatura de operación de la salmuera & \SI{15}{\celsius} & --- & Información Cliente \\
         & Temperatura de operación del condensado & \SI{20}{\celsius} & --- & Información Cliente \\
         \bottomrule
@@ -78,20 +79,20 @@ El sistema transporta de forma paralela dos fluidos independientes: salmuera sat
 \subsection{Especificación de Tuberías y Accesorios}
 \label{ssec:tuberia}
 
-El diseño propuesto por el equipo de Mantenimiento de BRINSA S.A. contempla el uso de tubería de Polietileno de Alta Densidad (HDPE) clase PE100 y relación de dimensiones estándar SDR 17. Las dimensiones geométricas para la simulación hidráulica se presentan en la Tabla~\ref{tab:tuberia}.
+El diseño propuesto por el equipo de Mantenimiento de BRINSA S.A. contempla el uso de tubería de Polietileno de Alta Densidad (HDPE) clase PE100 y relación de dimensiones estándar SDR 13.6 para la línea de condensados. Con base en la validación mecánica, la línea de salmuera se rediseña a SDR 11. Las dimensiones geométricas para la simulación hidráulica se presentan en la Tabla~\ref{tab:tuberia}.
 
 \begin{table}[htbp]
     \centering
     \caption{Dimensiones geométricas de la tubería bajo análisis.}
     \label{tab:tuberia}
     \setcounter{itemcount}{0}
-    \begin{tabularx}{\textwidth}{@{}NXcccc@{}}
+    \begin{tabularx}{\textwidth}{@{}NXccccc@{}}
         \toprule
-        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Línea / Servicio} & \textbf{D. Nominal} & \textbf{D. Exterior} & \textbf{D. Interior} & \textbf{Espesor Pared} \\
-        & & \textbf{[in]} & \textbf{[mm]} & \textbf{[mm]} & \textbf{[mm]} \\
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Línea / Servicio} & \textbf{D. Nominal} & \textbf{D. Exterior} & \textbf{D. Interior} & \textbf{Espesor Pared} & \textbf{SDR} \\
+        & & \textbf{[in]} & \textbf{[mm]} & \textbf{[mm]} & \textbf{[mm]} & \\
         \midrule
-        & Salmueroducto por PHD & 12 & 315.0 & 278.0 & 18.5 \\
-        & Línea de Condensados por PHD & 12 & 315.0 & 278.0 & 18.5 \\
+        & Salmueroducto por PHD & 12 & 315.0 & 257.73 & 28.64 & 11 \\
+        & Línea de Condensados por PHD & 12 & 315.0 & 268.68 & 23.16 & 13.6 \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -102,25 +103,31 @@ La rugosidad absoluta interna de las tuberías de HDPE PE100 se establece en $\e
 \subsection{Perfil Altimétrico y Cotas Clave Globales}
 \label{ssec:perfil_global}
 
-El salmueroducto y la línea de condensados operan en un trazado topográfico de conducción por gravedad y bombeo con una longitud horizontal total de \SI{25.35}{\kilo\meter}. Para el cálculo de presiones hidrostáticas estáticas reales bajo condición de parada, es mandatorio considerar el perfil altimétrico completo del sistema referenciado a los puntos extremos y el cruce enterrado. Los datos de elevación clave extraídos del archivo general \texttt{PERFILPROYECTO.dxf} se consolidan en la Tabla~\ref{tab:cotas_globales}.
+El salmueroducto y la línea de condensados operan en un trazado topográfico de conducción por gravedad y bombeo con una longitud horizontal total de \SI{25.35}{\kilo\meter}. Para el cálculo de presiones hidrostáticas estáticas reales bajo condición de parada, es mandatorio considerar el perfil altimétrico completo del sistema referenciado a los puntos extremos, al cruce enterrado y a los equipos que rompen o generan la columna hidrostática. Los datos de elevación clave extraídos del archivo general \texttt{PERFILPROYECTO.dxf} se consolidan en la Tabla~\ref{tab:cotas_globales}.
 
 \begin{table}[htbp]
     \centering
     \caption{Elevaciones y cotas clave del trazado del salmueroducto global.}
     \label{tab:cotas_globales}
     \setcounter{itemcount}{0}
-    \begin{tabularx}{\textwidth}{@{}NXccl@{}}
+    \small
+    \begin{tabularx}{\textwidth}{@{}NXc>{\raggedright\arraybackslash}X@{}}
         \toprule
-        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Punto de Referencia / Localización} & \textbf{Abscisa} & \textbf{Cota Clave} & \textbf{Fuente / Observación} \\
-        & & \textbf{[km]} & \textbf{[m.s.n.m.]} & \\
+        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Punto de referencia} & \textbf{Cota} & \textbf{Fuente / observación} \\
+        & & \textbf{[m.s.n.m.]} & \\
         \midrule
-        & Origen en Mina de Sesquilé & K0+000.00 & 2703.37 & Capa \texttt{COTA-CLAVE-SAL} (DXF) \\
-        & Lanzamiento PHD Humedal Arrieros (Cresta de entrada) & K16+500.00 & 2558.35 & Plano \texttt{202609-BRI-SE-CIV-PL-001-RB} \\
-        & Fondo del Sifón Invertido (Cruce Humedal y Vía Férrea) & K16+580.00 & 2542.75 & Cota mínima proyectada de PHD \\
-        & Llegada a Planta Brinsa (Tocancipá) & K25+350.00 & 2522.90 & Capa de texto (DXF) \\
+        & Origen en Mina de Sesquilé & 2703.37 & Capa \texttt{COTA-CLAVE-SAL} (DXF) \\
+        & Tanque de Quiebre Atmosférico (salmuera) & 2658.24 & Capa \texttt{COTA-TER} (DXF); rompe columna estática \\
+        & Estación de Bombeo de Condensado (provisional) & 2597.00 & Texto en DXF; pendiente plano detalle \\
+        & Lanzamiento PHD Humedal Arrieros & 2558.35 & Plano \texttt{202609-BRI-SE-CIV-PL-001-RB} \\
+        & Zona Inundable (cota de terreno) & 2560--2563 & Texto "zona inundable" en DXF \\
+        & Fondo del Sifón Invertido (cruce humedal/vía férrea) & 2542.75 & Cota mínima proyectada de PHD \\
+        & Llegada a Planta Brinsa (Tocancipá) & 2522.90 & Capa de texto (DXF) \\
         \bottomrule
     \end{tabularx}
 \end{table}
+
+La Mina de Sesquilé ($2703.37\ \text{m.s.n.m.}$) sigue siendo el origen geográfico del salmueroducto, pero ya no es la referencia que gobierna la presión estática de parada en el cruce del Km~16.5. Para la salmuera, la referencia real es el tanque de quiebre atmosférico ($2658.24\ \text{m.s.n.m.}$), verificado directamente en el DXF. Para el condensado, la referencia provisional es la estación de bombeo ($\sim$2597$\ \text{m.s.n.m.}$), dado que el fluido fluye hacia la mina y el cruce se encuentra en el lado de succión. El tramo del cruce PHD atraviesa una zona inundable con cotas de terreno entre 2560 y 2563$\ \text{m.s.n.m.}$, lo cual implica verificar la estabilidad geotécnica del tubo enterrado ante suelo saturado y posible erosión de la cobertura.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \subsection{Normativas y Estándares Aplicables}

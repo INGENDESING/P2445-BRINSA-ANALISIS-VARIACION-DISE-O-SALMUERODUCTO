@@ -3,20 +3,23 @@
 
 Con base en el análisis hidráulico y de riesgos operativos presentado en este estudio, se formulan las siguientes recomendaciones para la ingeniería de detalle y la operación del sistema:
 
-\begin{table}[htbp]
-    \centering
-    \caption{Recomendaciones técnicas y operativas para el proyecto de profundización.}
-    \label{tab:recomendaciones}
-    \setcounter{itemcount}{0}
-    \begin{tabularx}{\textwidth}{@{}NlX@{}}
-        \toprule
-        \multicolumn{1}{c}{\textbf{Item}} & \textbf{Categoría} & \textbf{Recomendación} \\
-        \midrule
-        & Operacional y Mantenimiento & Implementar un protocolo de lavado periódico y purga de la línea de salmuera utilizando condensado de vapor o agua industrial en caso de paradas prolongadas de flujo o cuando el caudal descienda de \SI{55}{\liter\per\second} (velocidad menor a \SI{0.9}{\meter\per\second}), con el fin de disolver cristales de sal precipitados y arrastrar arenas depositadas en el fondo del sifón. \\
-        & Diseño de Infraestructura & Instalar válvulas ventosas automáticas de triple efecto y alta confiabilidad (especificadas para fluidos altamente corrosivos) en los puntos de transición superior superficial a las abscisas K0+000 y K0+450 para evacuar aire acumulado y prevenir bloqueos de flujo y golpes de ariete. \\
-        & Ingeniería de Diseño & Rediseñar la especificación mecánica de las tuberías en el tramo enterrado por PHD para soportar la presión hidrostática global: (a) En caso de operar sin válvulas de aislamiento, es mandatorio cambiar el espesor a clase **SDR 9** (\SI{20.0}{bar}) para salmuera y **SDR 11** (\SI{16.0}{bar}) para condensados bajo ISO 4427, o clase **SDR 7.4** bajo ASME B31.3. (b) De forma prioritaria y preferencial, se recomienda aprovechar el seccionamiento automático para segmentar la línea en paradas, limitando la columna estática al desnivel local de \SI{15.60}{\meter} (\SI{1.84}{bar}), lo cual viabiliza mantener la tubería original de HDPE PE100 SDR 17. \\
-        & Validación de Campo & Verificar en el P\&ID y en sitio la posición hidráulica y la lógica de disparo de las válvulas de corte existentes \texttt{ESDV-SAL-K17} y \texttt{ESDV-SAL-K8} (identificadas en la auditoría del SCADA, Sección~\ref{sec:auditoria}) para confirmar si confinan el cruce del Km 16.5. Complementariamente, registrar un transitorio de presión durante una parada real con el sifón intercomunicado para validar en campo la presión estática estimada de \SI{18.90}{bar} (salmuera) y \SI{15.75}{bar} (condensado). \\
-        & Ingeniería de Detalle & Desarrollar un modelamiento dinámico de transitorios hidráulicos (análisis de golpe de ariete) para la operación simultánea de las estaciones Km17 y Km8, evaluando el comportamiento de las presiones de succión e inyección en el sifón invertido ante paradas súbitas de energía. \\
-        \bottomrule
-    \end{tabularx}
-\end{table}
+\setcounter{itemcount}{0}
+\begin{longtable}{@{}N p{3.2cm} p{\dimexpr\textwidth-4.2cm-6\tabcolsep\relax}@{}}
+    \caption{Recomendaciones técnicas y operativas para el proyecto de profundización.}\label{tab:recomendaciones}\\
+    \toprule
+    \multicolumn{1}{c}{\textbf{Item}} & \textbf{Categoría} & \textbf{Recomendación} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \multicolumn{1}{c}{\textbf{Item}} & \textbf{Categoría} & \textbf{Recomendación} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    & Diseño de Infraestructura & Instalar válvulas ventosas automáticas de triple efecto y alta confiabilidad (especificadas para fluidos altamente corrosivos) en los puntos de transición superior superficial a las abscisas K0+000 y K0+450 del plano 202609-BRI-SE-CIV-PL-001-RB.pdf, para evacuar aire acumulado y prevenir bloqueos de flujo y golpes de ariete. \\
+    & Ingeniería de Diseño & Rediseñar la especificación mecánica de las tuberías en el tramo enterrado por PHD para soportar la presión hidrostática global real: (a) En caso de operar sin válvulas de aislamiento, es mandatorio cambiar el espesor de la línea de salmuera a clase SDR 11 (PN16) bajo ISO 4427; el condensado puede mantenerse en SDR 13.6 (\SI{12.70}{bar}) dado que su presión estática global es \SI{5.32}{bar}. (b) De forma prioritaria y preferencial, se recomienda aprovechar el seccionamiento automático para segmentar la línea en paradas, limitando la columna estática al desnivel local de \SI{15.60}{\meter} (\SI{1.84}{bar}), lo cual viabiliza mantener la tubería de HDPE PE100 SDR 13.6. \\
+    & Validación de Campo & Verificar en el P\&ID y en sitio la posición hidráulica, la lógica de disparo y la hermeticidad de corte de las válvulas existentes \texttt{ESDV-SAL-K17} y \texttt{ESDV-SAL-K8} (identificadas en la auditoría del SCADA, Sección~\ref{sec:auditoria}) para confirmar si confinan el cruce del Km 16.5. Complementariamente, registrar un transitorio de presión durante una parada real con el sifón intercomunicado para validar en campo la presión estática estimada de \SI{13.59}{bar} (salmuera) y \SI{5.32}{bar} (condensado). \\
+    & Geotecnia / Obras Civiles & Ejecutar estudio geotécnico e hidrológico del cruce (sondeos a ambos lados, nivel freático, erodibilidad y socavación de diseño). En el tramo profundo del PHD, inyectar el anular con lechada cemento-bentonita o CLSM para garantizar transferencia de carga suelo-tubo y peso adicional; no se requiere lastre permanente por cobertura natural. En zonas de entrada/salida y transición con cobertura reducida ($<\SI{1.5}{\meter}$), instalar collarines de hormigón o anclas mecánicas según verificación de flotación con tubo vacío ($FS \geq 1.25$--$1.50$). Proteger la corona contra erosión y socavación con geotextil de separación y capa de rip-rap o gaviones, extendida aguas arriba y aguas abajo del cruce (mínimo \SI{10}{\meter}--\SI{20}{\meter} o según modelo hidráulico). Durante el tiro PHD aplicar water ballasting para controlar flotación y tracción (ASTM~F1962). \\
+    & Ingeniería de Detalle & Desarrollar un modelamiento dinámico de transitorios hidráulicos (análisis de golpe de ariete) para la operación simultánea de las estaciones Km17 y Km8, evaluando el comportamiento de las presiones de succión e inyección en el sifón invertido ante paradas súbitas de energía. \\
+    & Operacional y Mantenimiento & Implementar un protocolo de lavado periódico y purga de la línea de salmuera en caso de paradas prolongadas de flujo o cuando el caudal descienda de \SI{47}{\liter\per\second} (velocidad menor a \SI{0.9}{\meter\per\second}), con el fin de disolver cristales de sal precipitados y arrastrar arenas depositadas en el fondo del sifón. Se recomienda desarrollar una ingeniería de detalle que defina el fluido de lavado compatible con el servicio, los accesorios en tubería (tomas, válvulas, by-passes), los equipos de inyección y purga, y la secuencia operativa. Dicha ingeniería debe diseñarse bajo la restricción de cero vertimientos al área circundante, condición ambiental que motivó la solución de enterramiento de las tuberías mediante perforación horizontal dirigida (PHD). \\
+\end{longtable}

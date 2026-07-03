@@ -21,8 +21,11 @@ headheight=3.0cm, headsep=0.3cm]{geometry}
 \titleformat{\subsubsection}{\bfseries\itshape\fontsize{11}{13}\selectfont}{\thesubsubsection}{1em}{}
 
 % ===================== PAQUETES MATEMÁTICOS =====================
+% Se libera \Bbbk para evitar conflicto entre newtxmath y amssymb.
+\let\Bbbk\relax
 \usepackage{amsmath,amssymb,amsfonts,mathtools}
 \usepackage{textgreek,gensymb,siunitx}
+\sisetup{per-mode=symbol, inter-unit-product=\cdot}
 
 % ===================== COMANDOS PERSONALIZADOS =====================
 % ===================== QUÍMICA Y SÍMBOLOS =====================
@@ -49,7 +52,8 @@ headheight=3.0cm, headsep=0.3cm]{geometry}
 \usepackage{tocloft}
 \usepackage{appendix}
 \usepackage{eso-pic}
-\usepackage{lastpage}
+\usepackage{zref-lastpage}
+\usepackage{zref-user}
 \usepackage{pdflscape}
 
 % (Paquetes de tablas y colores ya cargados arriba — líneas 32-34, 44)
