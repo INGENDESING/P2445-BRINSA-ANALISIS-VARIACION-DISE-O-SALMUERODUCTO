@@ -1,9 +1,9 @@
 # Contexto del proyecto: Validación Hidráulica Cruce Humedal Arrieros - BRINSA S.A.
 
 ## Estado actual
-- Última tarea completada: Integración de la auditoría SCADA al informe LaTeX (nueva Sección "Auditoría de Campo y Validación con SCADA" + actualización de análisis/conclusiones/recomendaciones; PDF recompilado a 29 páginas) y al Dashboard web (`index.html`, sección "Auditoría de Campo (SCADA)"). Previo: recalibración de dos envolventes (`auditoria_campo.py`) y entrega de `auditoria_scada_brinsa.md`/`.html`.
-- Próxima tarea pendiente: Verificar en P&ID/sitio la posición hidráulica de las válvulas ESDV-SAL-K17/K8 respecto al cruce PHD Km 16.5 para confirmar si confinan la columna de Sesquilé en parada (y habilitan conservar el SDR 17). En paralelo, activar GitHub Pages y socializar Dashboard + PDF con el cliente.
-- Fecha de última actualización: 24 de junio de 2026
+- Última tarea completada: Emisión del informe en **Revisión 1** (`config/datos_proyecto.tex`: `\docRevision` 0->1, fechas y firmas a 13/08/2026, fila Rev 1 diligenciada) y ampliación del Resumen Ejecutivo (`sections/02_resumen.tex`): el cuarto riesgo se reformuló como esfuerzos de interacción suelo-tubería (flotación por empuje de Arquímedes U≈0.77 kN/m que supera el peso del tubo vacío, pérdida de confinamiento en suelo saturado, erosión de cobertura) y se añadió la conclusión de que el tramo enterrado requiere una estrategia de diseño de ingeniería específica (relleno anular CLSM, water ballasting ASTM F1962, lastre/anclaje con FS≥1.25–1.50, protección con geotextil+rip-rap), referenciando §10 (`ssec:analisis_inundable`).
+- Próxima tarea pendiente: Recompilar el PDF entregable en la máquina del cliente (el entorno remoto carece de pdflatex/latexmk) y verificar que el membrete muestre REVISIÓN: R1 sin referencias indefinidas. Sigue pendiente verificar en P&ID/sitio la posición hidráulica de ESDV-SAL-K17/K8 respecto al cruce PHD Km 16.5.
+- Fecha de última actualización: 13 de agosto de 2026
 
 ## Bases de diseño congeladas
 - Diámetro nominal y material: 12" NPS (Diámetro Exterior OD = 315.0 mm).
@@ -23,6 +23,7 @@
   2. Priorizar la instalación de válvulas de seccionamiento automático en los extremos del sifón para confinar el tramo localmente en paradas, limitando la columna estática a 1.84 bar (salmuera) y 1.53 bar (condensados), viabilizando el uso de la tubería SDR 17 original.
 - **Eliminación de Sangrías en LaTeX (24/06/2026):** Se configuró globalmente `\parindent` en `0pt` y `\parskip` en `6pt` en el preámbulo para eliminar la sangría y establecer una separación vertical clara entre párrafos, optimizando la lectura formal.
 - **Estática independiente del flujo (24/06/2026):** Se confirmó que la cabeza estática (18.90 bar salmuera / 15.75 bar condensado) obedece solo a `P = ρ·g·Δh` y es idéntica en la condición operativa actual (caudal de campo ~96 m³/h salmuera, FT-SA3001) y en el máximo futuro de 300 000 kg/h. El bajo flujo actual no atenúa el sobreesfuerzo del SDR 17 (+89.0 % / +57.5 %); la estática gobierna la integridad y el 300 000 kg/h gobierna la dinámica/golpe de ariete.
+- **Emisión Revisión 1 y encuadre geotécnico del abstract (13/08/2026):** Se decidió tratar los efectos del tramo enterrado como "interacción suelo-tubería y flotación" (hidrostático/geoestático), NO como "dinámica del suelo" (sismo/vibración), por precisión técnica frente al contenido que lo respalda en §10 (`ssec:analisis_inundable`). El Resumen Ejecutivo concluye ahora que el enterramiento a ~15.6 m en zona inundable exige una estrategia de diseño de ingeniería específica; el sustento se reutiliza del §10 ya citado (AWWA M55, PPI Handbook, ASTM F1962, ASCE MOP 108), sin fuentes web nuevas.
 - **Válvulas de aislamiento existentes (24/06/2026):** El SCADA DS6 muestra ESDV-SAL-K17 y ESDV-SAL-K8 en operación (realimentación R/CO, interlocks de búnker/puerta). La alternativa de aislamiento podría no requerir obra mayor; pendiente verificar su posición hidráulica respecto al sifón PHD Km 16.5.
 
 ## Archivos clave y su propósito

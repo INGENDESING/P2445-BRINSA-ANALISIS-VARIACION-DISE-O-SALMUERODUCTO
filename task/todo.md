@@ -108,3 +108,30 @@
    - Informe: `FORMATO LATEX CON ENCABEZADO/build/P202609-BRI-SE-CIV-INF-001.pdf` (y copia en raíz del informe).
    - Sección nueva: `FORMATO LATEX CON ENCABEZADO/sections/10b_auditoria_scada.tex`.
    - Dashboard: `index.html` (sección audit-section).
+
+---
+
+# Plan 4: Emisión Revisión 1 + ampliación del Resumen Ejecutivo (interacción suelo-tubería y flotación)
+
+## Contexto
+- Objetivo: (1) emitir el informe en Revisión 1; (2) fortalecer el Resumen Ejecutivo para explicitar que el tramo enterrado por PHD (~15.6 m de profundidad, zona inundable) queda sometido a esfuerzos de interacción suelo-tubería —principalmente flotación (empuje de Arquímedes)— y que es concluyente la necesidad de una estrategia de diseño de ingeniería para soportarlos a esa profundidad.
+- Decisiones del cliente: encuadre "interacción suelo-tubería y flotación" (no "dinámica del suelo"); fuente solo §10 ya citada (sin web); Revisión 1 con fecha 13/08/2026.
+
+## Tareas
+- [x] T1. `config/datos_proyecto.tex`: `\docRevision` 0->1; fechas de documento y firmas a 13/08/2026; `\docFechaLarga` a AGOSTO 2026; fila Rev 1 (`\fechaRevUno`/`\descRevUno`) diligenciada; fila Rev 0 conservada como histórico.
+- [x] T2. `sections/02_resumen.tex`: párrafo de cierre — riesgo (4) reformulado (interacción suelo-tubería, flotación U≈0.77 kN/m, confinamiento en suelo saturado, erosión) + frase concluyente sobre la estrategia de diseño (relleno anular CLSM, water ballasting ASTM F1962, lastre/anclaje con FS≥1.25–1.50, protección con geotextil+rip-rap) con `\ref{ssec:analisis_inundable}`.
+- [x] T3. Verificación de sintaxis/coherencia (sin toolchain LaTeX en el entorno remoto).
+
+## Riesgos / Puntos de verificación
+- [x] Coherencia numérica del abstract idéntica a §10/§12 (0.77 kN/m; 20.2–24.5 vs 77.9 kg/m; FS 1.25–1.50; <1.5 m; 15.6 m; 2560–2563 m.s.n.m.).
+- [x] `\ref{ssec:analisis_inundable}` con etiqueta existente (`10_analisis.tex:233`).
+- [x] Balance de `$` en `02_resumen.tex` (12, par); sin viñetas nuevas; anglicismos en redonda para homologar con §10/§12.
+- [ ] Recompilación del PDF en la máquina del cliente (este entorno remoto carece de pdflatex/latexmk).
+
+## Revisión 4
+1. Resumen de cambios: Se emitió el informe en Revisión 1 (13/08/2026) actualizando el control de firmas en `datos_proyecto.tex` (el membrete mostrará REVISIÓN: R1 y la hoja de firmas registrará la fila Rev 1, conservando la fila Rev 0 histórica). Se amplió el párrafo de cierre del Resumen Ejecutivo (`02_resumen.tex`): el cuarto riesgo se reformuló para nombrar el mecanismo de interacción suelo-tubería (flotación por empuje de Arquímedes U≈0.77 kN/m que supera el peso del tubo vacío, pérdida de confinamiento en suelo saturado y erosión/socavación de cobertura) y se añadió una frase concluyente que sintetiza la estrategia de diseño de ingeniería requerida, referenciando la §10 (`ssec:analisis_inundable`).
+2. Desviaciones respecto al plan: Ninguna. Ajuste menor de estilo: los anglicismos "water ballasting" y "rip-rap" se dejaron en redonda para homologar con el uso ya establecido en §10 y §12.
+3. Limitaciones / trabajo futuro: El PDF entregable debe recompilarse en la máquina del cliente (toolchain LaTeX ausente en el entorno remoto). Persisten los bloqueos previos (posición de ESDV, validación de estática en parada real, captura nítida de DS1, lazo Pd_FIC5A3001, vigencia del dato SCADA).
+4. Entregables y rutas:
+   - `FORMATO LATEX CON ENCABEZADO/config/datos_proyecto.tex` (Revisión 1).
+   - `FORMATO LATEX CON ENCABEZADO/sections/02_resumen.tex` (Resumen Ejecutivo ampliado).
