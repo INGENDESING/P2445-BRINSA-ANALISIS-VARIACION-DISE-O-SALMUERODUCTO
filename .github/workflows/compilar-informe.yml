@@ -1,0 +1,51 @@
+name: Compilar Informe LaTeX
+
+# Compila el informe P202609-BRI-SE-CIV-INF-001 en la nube (TeX Live completo)
+# y publica el PDF como artefacto descargable. No requiere TeX instalado en local.
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+    paths:
+      - 'FORMATO LATEX CON ENCABEZADO/**'
+      - '.github/workflows/compilar-informe.yml'
+  pull_request:
+    paths:
+      - 'FORMATO LATEX CON ENCABEZADO/**'
+      - '.github/workflows/compilar-informe.yml'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      # latexmk encadena pdflatex -> bibtex -> pdflatex -> pdflatex automaticamente,
+      # resolviendo las citas (elsarticle-num) y las referencias cruzadas (TOC/LOT/LOF).
+      - name: Compilar con latexmk (TeX Live completo)
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: "FORMATO LATEX CON ENCABEZADO"
+          root_file: main.tex
+          latexmk_use_xelatex: false
+          args: -pdf -jobname=P202609-BRI-SE-CIV-INF-001 -interaction=nonstopmode -halt-on-error -file-line-error
+
+      - name: Publicar PDF como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: P202609-BRI-SE-CIV-INF-001
+          path: "FORMATO LATEX CON ENCABEZADO/P202609-BRI-SE-CIV-INF-001.pdf"
+          if-no-files-found: error
+
+      # Si la compilacion falla, sube el .log para diagnostico.
+      - name: Publicar log en caso de fallo
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: "FORMATO LATEX CON ENCABEZADO/*.log"
+          if-no-files-found: ignore
