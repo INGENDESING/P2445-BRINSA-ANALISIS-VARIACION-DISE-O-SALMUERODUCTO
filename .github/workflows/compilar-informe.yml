@@ -1,6 +1,6 @@
 name: Compilar Informe LaTeX
 
-# Compila el informe P202609-BRI-SE-CIV-INF-001 en la nube (TeX Live completo),
+# Compila el informe P2515-PR-INF-001 en la nube (TeX Live completo),
 # lo publica como artefacto descargable y ademas commitea el PDF de vuelta al repo
 # para poder verlo con un clic (GitHub lo muestra incrustado en el navegador).
 # No requiere TeX instalado en local.
@@ -37,13 +37,13 @@ jobs:
           working_directory: "FORMATO LATEX CON ENCABEZADO"
           root_file: main.tex
           latexmk_use_xelatex: false
-          args: -pdf -jobname=P202609-BRI-SE-CIV-INF-001 -interaction=nonstopmode -halt-on-error -file-line-error
+          args: -pdf -jobname=P2515-PR-INF-001 -interaction=nonstopmode -halt-on-error -file-line-error
 
       - name: Publicar PDF como artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: P202609-BRI-SE-CIV-INF-001
-          path: "FORMATO LATEX CON ENCABEZADO/P202609-BRI-SE-CIV-INF-001.pdf"
+          name: P2515-PR-INF-001
+          path: "FORMATO LATEX CON ENCABEZADO/P2515-PR-INF-001.pdf"
           if-no-files-found: error
 
       # Commitea el PDF compilado de vuelta a la rama para verlo con un clic en GitHub.
@@ -54,7 +54,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(build): PDF compilado de ${{ github.sha }} [skip ci]"
-          file_pattern: "FORMATO LATEX CON ENCABEZADO/P202609-BRI-SE-CIV-INF-001.pdf"
+          file_pattern: "FORMATO LATEX CON ENCABEZADO/P2515-PR-INF-001.pdf"
 
       # Si la compilacion falla, sube el .log para diagnostico.
       - name: Publicar log en caso de fallo
